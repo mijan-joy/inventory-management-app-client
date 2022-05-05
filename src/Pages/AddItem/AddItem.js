@@ -1,8 +1,11 @@
 import axios from "axios";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
+import auth from "../../firebase.init";
 
 const AddItem = () => {
+    const [user, loading, error] = useAuthState(auth);
     const { register, handleSubmit } = useForm();
     const onSubmit = (data) => {
         data.quantity = parseInt(data.quantity);
@@ -144,6 +147,22 @@ const AddItem = () => {
                             value="0"
                             autoComplete="off"
                             {...register("sold")}
+                        />
+                    </div>
+                    <div>
+                        <label
+                            htmlFor="email"
+                            className="block mt-5 text-sm font-medium text-gray-900 dark:text-gray-300"
+                        >
+                            Authorized Email:
+                        </label>
+                        <input
+                            id="email"
+                            className="block px-0 w-full  text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                            defaultValue={user?.email}
+                            autoComplete="off"
+                            readOnly
+                            {...register("email")}
                         />
                     </div>
 

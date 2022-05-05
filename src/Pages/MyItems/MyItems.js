@@ -1,20 +1,22 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { get } from "react-hook-form";
+import auth from "../../firebase.init";
 
-const ManageInventory = () => {
-    const [items, setItems] = useState([]);
-    const navigate = useNavigate();
+const MyItems = () => {
+    const [user, loading, error] = useAuthState(auth);
+    const [myItems, setMyItems] = useState([]);
     useEffect(() => {
         const get = async () => {
             await axios
-                .get(`http://localhost:5000/inventory`)
+                .get(`http://localhost:5000/inventory?email=${user.email}`)
                 .then((response) => {
-                    setItems(response.data);
+                    setMyItems(response.data);
                 });
         };
         get();
-    }, []);
+    }, [user]);
     const handleDeleteBtn = async (id) => {
         const proceed = window.confirm("do you want ot delete?");
         if (proceed) {
@@ -22,17 +24,15 @@ const ManageInventory = () => {
                 .delete(`http://localhost:5000/inventory/${id}`)
                 .then((response) => {
                     console.log(response);
-                    const rest = items.filter((item) => item._id !== id);
-                    setItems(rest);
+                    const rest = myItems.filter((item) => item._id !== id);
+                    setMyItems(rest);
                 });
         }
     };
-    const handleAddBtn = () => {
-        navigate("/inventory/manage/add");
-    };
     return (
-        <div className="container mx-auto">
-            <h2>Manage Inventory ({items.length})</h2>
+        <div>
+            <h2>My Items</h2>
+            <h2>Count: {myItems?.length}</h2>
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -45,7 +45,7 @@ const ManageInventory = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {items.map((item) => (
+                        {myItems.map((item) => (
                             <tr
                                 key={item._id}
                                 className="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700"
@@ -70,16 +70,8 @@ const ManageInventory = () => {
                     </tbody>
                 </table>
             </div>
-            <div>
-                <button
-                    onClick={handleAddBtn}
-                    className="rounded-full bg-sky-500 text-white px-4"
-                >
-                    Add New Item
-                </button>
-            </div>
         </div>
     );
 };
 
-export default ManageInventory;
+export default MyItems;
