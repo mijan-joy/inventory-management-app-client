@@ -7,10 +7,11 @@ import Header from "./Pages/Shared/Header/Header";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ManageInventory from "./Pages/ManageInventory/ManageInventory";
+import AddItem from "./Pages/AddItem/AddItem";
 
 function App() {
     return (
-        <div className="App">
+        <div>
             <Header></Header>
             <div>
                 <Routes>
@@ -23,6 +24,10 @@ function App() {
                     <Route
                         path="/inventory/manage"
                         element={<ManageInventory></ManageInventory>}
+                    ></Route>
+                    <Route
+                        path="/inventory/manage/add"
+                        element={<AddItem></AddItem>}
                     ></Route>
                 </Routes>
             </div>

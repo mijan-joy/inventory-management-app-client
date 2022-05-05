@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ManageInventory = () => {
     const [items, setItems] = useState([]);
-
+    const navigate = useNavigate();
     useEffect(() => {
         const get = async () => {
             await axios
@@ -25,6 +26,9 @@ const ManageInventory = () => {
                     setItems(rest);
                 });
         }
+    };
+    const handleAddBtn = () => {
+        navigate("/inventory/manage/add");
     };
     return (
         <div className="container mx-auto">
@@ -65,6 +69,14 @@ const ManageInventory = () => {
                         ))}
                     </tbody>
                 </table>
+            </div>
+            <div>
+                <button
+                    onClick={handleAddBtn}
+                    className="rounded-full bg-sky-500 text-white px-4"
+                >
+                    Add New Item
+                </button>
             </div>
         </div>
     );
