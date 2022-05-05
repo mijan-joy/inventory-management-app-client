@@ -4,6 +4,8 @@ import Home from "./Pages/Home/Home";
 import ManageItem from "./Pages/ManageItem/ManageItem";
 import Footer from "./Pages/Shared/Footer/Footer";
 import Header from "./Pages/Shared/Header/Header";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
     return (
@@ -20,6 +22,7 @@ function App() {
                 </Routes>
             </div>
             <Footer></Footer>
+            <ToastContainer />
         </div>
     );
 }
