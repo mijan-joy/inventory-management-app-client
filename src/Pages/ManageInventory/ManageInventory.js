@@ -14,12 +14,23 @@ const ManageInventory = () => {
         };
         get();
     }, []);
-
+    const handleDeleteBtn = async (id) => {
+        const proceed = window.confirm("do you want ot delete?");
+        if (proceed) {
+            await axios
+                .delete(`http://localhost:5000/inventory/${id}`)
+                .then((response) => {
+                    console.log(response);
+                    const rest = items.filter((item) => item._id !== id);
+                    setItems(rest);
+                });
+        }
+    };
     return (
         <div className="container mx-auto">
             <h2>Manage Inventory ({items.length})</h2>
             <div className="elative overflow-x-auto shadow-md sm:rounded-lg">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th className="px-6 py-3">Name</th>
@@ -42,7 +53,13 @@ const ManageInventory = () => {
                                 <td>{item?.quantity}</td>
                                 <td>{item?.sold}</td>
                                 <td>
-                                    <button>Delete</button>
+                                    <button
+                                        onClick={() => {
+                                            handleDeleteBtn(item._id);
+                                        }}
+                                    >
+                                        Delete
+                                    </button>
                                 </td>
                             </tr>
                         ))}

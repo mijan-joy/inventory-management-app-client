@@ -24,7 +24,7 @@ const ManageItem = () => {
         if (item.quantity > 0) {
             const update = async () => {
                 await axios
-                    .post(`http://localhost:5000/inventory/${id}`, {
+                    .put(`http://localhost:5000/inventory/${id}`, {
                         quantity: item?.quantity - 1,
                         sold: item?.sold + 1,
                     })
@@ -41,7 +41,7 @@ const ManageItem = () => {
         console.log(data);
         const update = async () => {
             await axios
-                .post(`http://localhost:5000/inventory/${id}`, {
+                .put(`http://localhost:5000/inventory/${id}`, {
                     quantity: item.quantity + parseInt(data.quantity),
                 })
                 .then((response) => {
@@ -86,7 +86,8 @@ const ManageItem = () => {
 
                     <input
                         className="rounded-full bg-sky-600 text-white px-4"
-                        type="Restock"
+                        type="submit"
+                        value="Restock"
                     />
                 </form>
             </div>
