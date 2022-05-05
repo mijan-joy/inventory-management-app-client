@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
     useCreateUserWithEmailAndPassword,
     useSendEmailVerification,
     useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
+import { toast } from "react-toastify";
+import { signOut } from "firebase/auth";
 
 const Register = () => {
+    const navigate = useNavigate();
     const { register, handleSubmit } = useForm();
     const [createUserWithEmailAndPassword, user, loading, error] =
         useCreateUserWithEmailAndPassword(auth);
@@ -23,12 +26,20 @@ const Register = () => {
     };
     const handleRegister = async (email, password, displayName) => {
         await createUserWithEmailAndPassword(email, password);
-        await sendEmailVerification();
+        await sendEmailVerification().then(toast("Verification email sent!"));
         await updateProfile({ displayName });
     };
-    if (user) {
-        console.log("sign up successful", user);
-    }
+    useEffect(() => {
+        if (
+            user?.user.providerData[0].providerId === "password" &&
+            user?.user.emailVerified === false
+        ) {
+            signOut(auth);
+            navigate("/verifyemail");
+        } else {
+            console.log("console from condition");
+        }
+    }, [user]);
     return (
         <div>
             <h2>Please register</h2>

@@ -10,6 +10,7 @@ import ManageInventory from "./Pages/ManageInventory/ManageInventory";
 import AddItem from "./Pages/AddItem/AddItem";
 import LogIn from "./Pages/LogIn/LogIn";
 import Register from "./Pages/Register/Register";
+import VerifyEmail from "./Pages/VerifyEmail/VerifyEmail";
 
 function App() {
     return (
@@ -36,10 +37,24 @@ function App() {
                         path="/register"
                         element={<Register></Register>}
                     ></Route>
+                    <Route
+                        path="/verifyemail"
+                        element={<VerifyEmail></VerifyEmail>}
+                    ></Route>
                 </Routes>
             </div>
             <Footer></Footer>
-            <ToastContainer />
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </div>
     );
 }

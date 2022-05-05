@@ -1,10 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
+import auth from "../../firebase.init";
 
 const LogIn = () => {
     const { register, handleSubmit } = useForm();
-    const onSubmit = (data) => console.log(data);
+    const navigate = useNavigate();
+    const location = useLocation();
+    let from = location.state?.from?.pathname || "/";
+    const onSubmit = (data) => {
+        const email = data.email;
+        const password = data.password;
+        handleSignIn(email, password);
+    };
+    const [signInWithEmailAndPassword, user, loading, error] =
+        useSignInWithEmailAndPassword(auth);
+    const handleSignIn = async (email, password) => {
+        await signInWithEmailAndPassword(email, password);
+    };
+    useEffect(() => {
+        if (user) {
+            navigate(from, { replace: true });
+            toast.success("Signed In Successfully.", {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+    }, [from, user, navigate]);
     return (
         <div>
             <h2>Please log in to continue</h2>
