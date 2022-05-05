@@ -8,7 +8,9 @@ const InventoryItems = () => {
     useEffect(() => {
         const get = async () => {
             await axios
-                .get(`http://localhost:5000/items?display=${displayItemCount}`)
+                .get(
+                    `http://localhost:5000/inventory?display=${displayItemCount}`
+                )
                 .then((response) => {
                     setItems(response.data);
                 });
