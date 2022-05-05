@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 
@@ -8,6 +8,7 @@ const ManageItem = () => {
     const { id } = useParams();
     const [item, setItem] = useState({});
     const [quantity, setQuantity] = useState(0);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const get = async () => {
@@ -50,6 +51,9 @@ const ManageItem = () => {
         };
         update();
     };
+    const handleManageInventoryBtn = () => {
+        navigate("/inventory/manage");
+    };
     return (
         <div>
             <img src={item?.img} alt="" />
@@ -85,6 +89,14 @@ const ManageItem = () => {
                         type="Restock"
                     />
                 </form>
+            </div>
+            <div>
+                <button
+                    onClick={handleManageInventoryBtn}
+                    className="rounded-full bg-sky-600 text-white px-4"
+                >
+                    Manage Inventory
+                </button>
             </div>
         </div>
     );
