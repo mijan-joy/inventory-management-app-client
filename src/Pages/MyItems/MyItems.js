@@ -52,18 +52,39 @@ const MyItems = () => {
                 });
         }
     };
+    const handleModifyBtn = (id) => {
+        navigate(`/inventory/${id}`);
+    };
+    const handleAddBtn = () => {
+        navigate("/inventory/manage/add");
+    };
     return (
-        <div>
-            <h2>My Items</h2>
-            <h2>Count: {myItems?.length}</h2>
+        <div className="container mx-auto">
+            <div className="py-5 flex items-center">
+                <h2 className="pr-5 text-xl">My Items: {myItems.length}</h2>
+                <div>
+                    <button
+                        onClick={handleAddBtn}
+                        className="bg-rakib-400 hover:bg-emerald-500 px-5 py-2 rounded-sm text-black"
+                    >
+                        Add New Item
+                    </button>
+                </div>
+            </div>
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <table className="w-full text-sm text-left text-gray-500 ">
+                    <thead className="text-xs text-white uppercase bg-gray-800 ">
                         <tr>
                             <th className="px-6 py-3">Name</th>
-                            <th className="px-6 py-3">Supplier</th>
-                            <th className="px-6 py-3">Current Quantity</th>
-                            <th className="px-6 py-3">Sold Quantity</th>
+                            <th className="hidden md:table-cell px-6 py-3">
+                                Supplier
+                            </th>
+                            <th className="hidden md:table-cell px-6 py-3">
+                                Current Quantity
+                            </th>
+                            <th className="hidden md:table-cell px-6 py-3">
+                                Sold Quantity
+                            </th>
                             <th className="px-6 py-3">Action</th>
                         </tr>
                     </thead>
@@ -71,16 +92,32 @@ const MyItems = () => {
                         {myItems.map((item) => (
                             <tr
                                 key={item._id}
-                                className="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700"
+                                className="border-b border-slate-700  odd:bg-gray-600 even:bg-gray-700 "
                             >
-                                <th className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                                <th className="px-6 py-4 font-medium text-white whitespace-nowrap">
                                     {item?.name}
                                 </th>
-                                <td className="px-6 py-4">{item?.supplier}</td>
-                                <td className="px-6 py-4">{item?.quantity}</td>
-                                <td className="px-6 py-4">{item?.sold}</td>
-                                <td className="px-6 py-4">
+                                <td className="hidden md:table-cell px-6 py-4 text-white/50">
+                                    {item?.supplier}
+                                </td>
+                                <td className="hidden md:table-cell px-6 py-4 text-white/50">
+                                    {item?.quantity}
+                                </td>
+                                <td className="hidden md:table-cell px-6 py-4 text-white/50">
+                                    {item?.sold}
+                                </td>
+                                <td className="px-6 py-4 text-white/50">
                                     <button
+                                        className="text-green-500 underline"
+                                        onClick={() => {
+                                            handleModifyBtn(item._id);
+                                        }}
+                                    >
+                                        Modify
+                                    </button>
+                                    {" / "}
+                                    <button
+                                        className="text-rose-600 underline"
                                         onClick={() => {
                                             handleDeleteBtn(item._id);
                                         }}
