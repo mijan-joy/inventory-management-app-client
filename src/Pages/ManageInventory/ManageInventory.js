@@ -75,7 +75,13 @@ const ManageInventory = () => {
                                 <td className="hidden md:table-cell px-6 py-4 text-white/50">
                                     {item?.supplier}
                                 </td>
-                                <td className="hidden md:table-cell px-6 py-4 text-white/50">
+                                <td
+                                    className={`hidden md:table-cell px-6 py-4 ${
+                                        item.quantity < 5
+                                            ? "text-rose-600"
+                                            : "text-white/50"
+                                    }`}
+                                >
                                     {item?.quantity}
                                 </td>
                                 <td className="hidden md:table-cell px-6 py-4 text-white/50">

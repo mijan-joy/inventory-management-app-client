@@ -4,7 +4,7 @@ const Banner = () => {
     return (
         <div className="bg-black text-white py-10 text-center mt-14">
             <p className="uppercase text-rakib-400 tracking-widest">
-                User based inventory management system
+                Cloud data based inventory management system
             </p>
             <h2 className="font-bold text-6xl pt-7">Real time updates</h2>
             <h2 className="font-bold text-5xl pt-3 animate-pulse">
