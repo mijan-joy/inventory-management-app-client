@@ -16,7 +16,7 @@ import RequireAuth from "./Pages/LogIn/RequireAuth/RequireAuth";
 
 function App() {
     return (
-        <div className="font-roboto grid min-h-screen page-container">
+        <div className="font-roboto grid min-h-screen page-container bg-black text-white">
             <Header></Header>
             <div>
                 <Routes>

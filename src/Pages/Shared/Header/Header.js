@@ -1,7 +1,7 @@
 import { signOut } from "firebase/auth";
 import React, { useEffect, useMemo, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
+import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import auth from "../../../firebase.init";
 import { MenuIcon, XIcon } from "@heroicons/react/solid";
 
@@ -25,8 +25,27 @@ const Header = () => {
         console.log(setTime(time));
     }, 1000);
 
+    function CustomLink({ children, to, ...props }) {
+        let resolved = useResolvedPath(to);
+        let match = useMatch({ path: resolved.pathname, end: true });
+
+        return (
+            <div>
+                <Link
+                    style={{
+                        color: match ? "#00df9a" : "",
+                    }}
+                    to={to}
+                    {...props}
+                >
+                    {children}
+                </Link>
+            </div>
+        );
+    }
+
     return (
-        <header>
+        <header className="sticky top-0">
             <div className=" bg-greyblack text-white">
                 <p className=" container mx-auto text-xs font-mono">
                     <span className="mr-4">
@@ -63,48 +82,48 @@ const Header = () => {
                                     : "top-[-250px] left-[0px]"
                             }`}
                         >
-                            <Link className="block p-2 mr-2" to="/home">
+                            <CustomLink className="block p-2 mr-2" to="/home">
                                 Home
-                            </Link>
+                            </CustomLink>
                             {user && (
-                                <Link
+                                <CustomLink
                                     className="block p-2 mr-2"
                                     to="/inventory/manage"
                                 >
                                     Manage Items
-                                </Link>
+                                </CustomLink>
                             )}
                             {user && (
-                                <Link
+                                <CustomLink
                                     className="block p-2 mr-2"
                                     to="/inventory/myitems"
                                 >
                                     My Items
-                                </Link>
+                                </CustomLink>
                             )}
                             {user && (
-                                <Link
+                                <CustomLink
                                     className="block p-2 mr-2"
                                     to="/inventory/manage/add"
                                 >
                                     Add Item
-                                </Link>
+                                </CustomLink>
                             )}
                             {user ? (
-                                <Link
+                                <CustomLink
                                     onClick={handleSignOut}
                                     className="block px-4 mr-2 py-1 bg-rakib-400 text-black md:rounded"
                                     to="/login"
                                 >
                                     Sign Out
-                                </Link>
+                                </CustomLink>
                             ) : (
-                                <Link
+                                <CustomLink
                                     className="block px-4 py-1 mr-2  bg-rakib-400 text-black md:rounded"
                                     to="/login"
                                 >
                                     Log In
-                                </Link>
+                                </CustomLink>
                             )}
                         </nav>
                     </div>
