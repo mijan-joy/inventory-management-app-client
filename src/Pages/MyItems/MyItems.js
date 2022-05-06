@@ -1,19 +1,42 @@
 import axios from "axios";
+import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { get } from "react-hook-form";
+import { Navigate, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 
 const MyItems = () => {
     const [user, loading, error] = useAuthState(auth);
     const [myItems, setMyItems] = useState([]);
+    const navigate = useNavigate();
     useEffect(() => {
         const get = async () => {
-            await axios
-                .get(`http://localhost:5000/inventory?email=${user.email}`)
-                .then((response) => {
-                    setMyItems(response.data);
-                });
+            try {
+                await axios
+                    .get(
+                        `http://localhost:5000/inventory/myitems?email=${user.email}`,
+                        {
+                            headers: {
+                                authorization: `Bearer: ${localStorage.getItem(
+                                    "authToken"
+                                )}`,
+                            },
+                        }
+                    )
+                    .then((response) => {
+                        setMyItems(response.data);
+                    });
+            } catch (error) {
+                console.log(error);
+                if (
+                    error.response.status === 401 ||
+                    error.response.status === 403
+                ) {
+                    signOut(auth);
+                    navigate("/login");
+                }
+            }
         };
         get();
     }, [user]);

@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
+import axios from "axios";
 
 const LogIn = () => {
     const { register, handleSubmit } = useForm();
@@ -19,6 +20,10 @@ const LogIn = () => {
         useSignInWithEmailAndPassword(auth);
     const handleSignIn = async (email, password) => {
         await signInWithEmailAndPassword(email, password);
+        const { data } = await axios.post(`http://localhost:5000/login`, {
+            email,
+        });
+        localStorage.setItem("authToken", data.authToken);
     };
     useEffect(() => {
         if (user) {
