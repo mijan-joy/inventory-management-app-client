@@ -1,17 +1,116 @@
 import { signOut } from "firebase/auth";
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import auth from "../../../firebase.init";
+import { MenuIcon, XIcon } from "@heroicons/react/solid";
 
 const Header = () => {
     const [user, loading, error] = useAuthState(auth);
+    const [open, setOpen] = useState(false);
     const handleSignOut = () => {
         signOut(auth);
     };
+
+    const [time, setTime] = useState("");
+
+    setInterval(() => {
+        const today = new Date();
+        const time =
+            today.getHours() +
+            ":" +
+            today.getMinutes() +
+            ":" +
+            today.getSeconds();
+        console.log(setTime(time));
+    }, 1000);
+
     return (
         <header>
-            <nav className="p-3">
+            <div className=" bg-greyblack text-white">
+                <p className=" container mx-auto text-xs font-mono">
+                    <span className="mr-4">
+                        PS Warehouse Management System V.1.0.0{" "}
+                    </span>{" "}
+                    {user && (
+                        <span className="mr-4">User: {user.displayName}</span>
+                    )}
+                    <span>{time}</span>
+                </p>
+            </div>
+            <div className="bg-black text-white ">
+                <div className="container mx-auto flex items-center justify-between py-3">
+                    <div className="flex items-center">
+                        <div
+                            onClick={() => {
+                                setOpen(!open);
+                            }}
+                            className="w-10 h-10 md:hidden mr-2"
+                        >
+                            {open ? <XIcon></XIcon> : <MenuIcon></MenuIcon>}
+                        </div>
+                        <div>
+                            <h2 className="text-center text-xl text-rakib-400 mx-auto z-50">
+                                Printing Solution
+                            </h2>
+                        </div>
+                    </div>
+                    <div>
+                        <nav
+                            className={`bg-black text-white md:flex items-center absolute md:static duration-200 w-full ease-in ${
+                                open
+                                    ? "top-20 left-[0px]"
+                                    : "top-[-250px] left-[0px]"
+                            }`}
+                        >
+                            <Link className="block p-2 mr-2" to="/home">
+                                Home
+                            </Link>
+                            {user && (
+                                <Link
+                                    className="block p-2 mr-2"
+                                    to="/inventory/manage"
+                                >
+                                    Manage Items
+                                </Link>
+                            )}
+                            {user && (
+                                <Link
+                                    className="block p-2 mr-2"
+                                    to="/inventory/myitems"
+                                >
+                                    My Items
+                                </Link>
+                            )}
+                            {user && (
+                                <Link
+                                    className="block p-2 mr-2"
+                                    to="/inventory/manage/add"
+                                >
+                                    Add Item
+                                </Link>
+                            )}
+                            {user ? (
+                                <Link
+                                    onClick={handleSignOut}
+                                    className="block px-4 mr-2 py-1 bg-rakib-400 text-black md:rounded"
+                                    to="/login"
+                                >
+                                    Sign Out
+                                </Link>
+                            ) : (
+                                <Link
+                                    className="block px-4 py-1 mr-2  bg-rakib-400 text-black md:rounded"
+                                    to="/login"
+                                >
+                                    Log In
+                                </Link>
+                            )}
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            {/* <nav className="p-3">
                 <Link
                     className="ml-4 py-2 px-4 border border-sky-800"
                     to="/home"
@@ -58,7 +157,7 @@ const Header = () => {
                         Log In
                     </Link>
                 )}
-            </nav>
+            </nav> */}
         </header>
     );
 };
