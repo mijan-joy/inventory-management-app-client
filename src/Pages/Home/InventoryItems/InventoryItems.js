@@ -48,7 +48,7 @@ const InventoryItems = () => {
                         ></InventoryItem>
                     ))}
                 </div>
-                <div className="py-5 text-center">
+                <div className="py-5 pb-10 text-center">
                     <Link
                         to="/inventory/manage"
                         className="bg-rakib-400 hover:bg-emerald-500 px-14 py-2 rounded-sm text-black"
