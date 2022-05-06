@@ -29,7 +29,6 @@ const ManageItem = () => {
                         sold: item?.sold + 1,
                     })
                     .then((response) => {
-                        console.log(response);
                         setQuantity(item.quantity);
                     });
             };

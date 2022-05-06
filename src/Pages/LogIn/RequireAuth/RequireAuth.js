@@ -1,11 +1,13 @@
 import React from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
+import { signOut } from "firebase/auth";
 
 const RequireAuth = ({ children }) => {
     const [user, loading] = useAuthState(auth);
     const location = useLocation();
+    const navigate = useNavigate();
     if (loading) {
         return <div>Loading....</div>;
     }
@@ -14,6 +16,12 @@ const RequireAuth = ({ children }) => {
         return (
             <Navigate to="/login" state={{ from: location }} replace></Navigate>
         );
+    }
+    if (
+        user.providerData[0]?.providerId === "password" &&
+        !user.emailVerified
+    ) {
+        navigate("/verifyemail");
     }
     return children;
 };

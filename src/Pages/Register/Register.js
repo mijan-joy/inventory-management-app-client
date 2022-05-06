@@ -12,7 +12,11 @@ import { signOut } from "firebase/auth";
 
 const Register = () => {
     const navigate = useNavigate();
-    const { register, handleSubmit } = useForm();
+    const {
+        register,
+        formState: { errors },
+        handleSubmit,
+    } = useForm();
     const [createUserWithEmailAndPassword, user, loading, error] =
         useCreateUserWithEmailAndPassword(auth);
     const [sendEmailVerification, sending, verificationError] =
@@ -28,65 +32,87 @@ const Register = () => {
         await createUserWithEmailAndPassword(email, password);
         await sendEmailVerification().then(toast("Verification email sent!"));
         await updateProfile({ displayName });
+        signOut(auth);
+        navigate("/verifyemail");
     };
-    useEffect(() => {
-        if (
-            user?.user.providerData[0].providerId === "password" &&
-            user?.user.emailVerified === false
-        ) {
-            signOut(auth);
-            navigate("/verifyemail");
-        } else {
-            console.log("console from condition");
-        }
-    }, [user]);
     return (
-        <div>
-            <h2>Please register</h2>
-            <div className="w-1/2 mx-auto">
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <div>
+        <div className="container mx-auto py-5">
+            <h2 className="text-xl text-center">Please register</h2>
+            <div className="max-w-[500px] mx-auto py-5">
+                <form
+                    onSubmit={handleSubmit(onSubmit)}
+                    className="p-5 bg-darkbg rounded-md border border-emerald-500"
+                >
+                    <div className="mb-5">
+                        <label
+                            htmlFor="name"
+                            className="block mb-2 text-sm font-medium text-gray-300"
+                        >
+                            Your Name:
+                        </label>
                         <input
-                            className="border border-sky-600 mb-5"
+                            className="border   text-sm rounded-md focus:ring-teal-500  block w-full p-2.5 bg-gray-700 placeholder-gray-400 text-white  border-teal-500"
                             type="text"
                             placeholder="name"
                             required
-                            {...register("name")}
+                            {...register("name", { minLength: 3 })}
                         />
+                        {errors.name && (
+                            <span className="text-rose-600">
+                                Minimum 3 letters
+                            </span>
+                        )}
                     </div>
-                    <div>
+                    <div className="mb-5">
+                        <label
+                            htmlFor="name"
+                            className="block mb-2 text-sm font-medium text-gray-300"
+                        >
+                            Your Email:
+                        </label>
                         <input
-                            className="border border-sky-600 mb-5"
+                            className="border   text-sm rounded-md focus:ring-teal-500  block w-full p-2.5 bg-gray-700 placeholder-gray-400 text-white  border-teal-500"
                             type="email"
                             placeholder="email"
                             required
                             {...register("email")}
                         />
                     </div>
-                    <div>
+                    <div className="mb-5">
+                        <label
+                            htmlFor="name"
+                            className="block mb-2 text-sm font-medium text-gray-300"
+                        >
+                            Password (min 6 character):
+                        </label>
                         <input
-                            className="border border-sky-600 mb-5"
+                            className="border   text-sm rounded-md focus:ring-teal-500  block w-full p-2.5 bg-gray-700 placeholder-gray-400 text-white  border-teal-500"
                             type="password"
                             placeholder="password"
                             required
-                            {...register("password")}
+                            {...register("password", { minLength: 6 })}
                         />
+                        {errors.password && (
+                            <span className="text-rose-600">
+                                Minimum 6 characters
+                            </span>
+                        )}
                     </div>
 
                     <input
-                        className="rounded-pill bg-sky-700 text-white"
+                        className="w-full bg-rakib-400 hover:bg-emerald-500 px-5 py-2 rounded-md text-black"
                         type="submit"
                         value="Register"
                     />
+                    <div className="py-3">
+                        <p>
+                            Already registered?{" "}
+                            <Link className="underline text-white" to="/login">
+                                Click here to log in...
+                            </Link>{" "}
+                        </p>
+                    </div>
                 </form>
-            </div>
-            <div>
-                <p>
-                    Already registered?{" "}
-                    <Link className="underline text-blue-600" to="/login">
-                        Click here to log in...
-                    </Link>{" "}
-                </p>
             </div>
         </div>
     );
