@@ -119,7 +119,7 @@ const Header = () => {
                                 </CustomLink>
                             ) : (
                                 <CustomLink
-                                    className="block px-4 py-1 mr-2  bg-rakib-400 text-black md:rounded"
+                                    className="block px-4 py-1 mr-2  bg-white text-black md:rounded"
                                     to="/login"
                                 >
                                     Log In

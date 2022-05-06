@@ -125,7 +125,7 @@ const ManageItem = () => {
                     <div>
                         <button
                             onClick={handleManageInventoryBtn}
-                            className="w-full bg-teal-400 hover:bg-emerald-500 px-5 py-2 rounded-md text-black tracking-wide"
+                            className="w-full bg-teal-400 hover:bg-teal-500 px-5 py-2 rounded-md text-black tracking-wide"
                         >
                             Manage Inventory
                         </button>

@@ -40,43 +40,59 @@ const LogIn = () => {
         }
     }, [from, user, navigate]);
     return (
-        <div>
-            <h2>Please log in to continue</h2>
-            <div className="w-1/2 mx-auto">
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <div>
+        <div className="container mx-auto">
+            <div className="max-w-[500px] mx-auto py-5">
+                <form
+                    className="p-5 bg-darkbg rounded-md border border-emerald-500"
+                    onSubmit={handleSubmit(onSubmit)}
+                >
+                    <div className="mb-5">
+                        <label
+                            htmlFor="name"
+                            className="block mb-2 text-sm font-medium text-gray-300"
+                        >
+                            Email:
+                        </label>
                         <input
-                            className="border border-sky-600 mb-5"
+                            className="border   text-sm rounded-md focus:ring-teal-500  block w-full p-2.5 bg-gray-700 placeholder-gray-400 text-white  border-teal-500"
                             type="email"
-                            placeholder="email"
+                            placeholder="Enter email"
                             required
                             {...register("email")}
                         />
                     </div>
-                    <div>
+                    <div className="mb-5">
+                        <label
+                            htmlFor="name"
+                            className="block mb-2 text-sm font-medium text-gray-300"
+                        >
+                            Password:
+                        </label>
                         <input
-                            className="border border-sky-600 mb-5"
+                            className="border   text-sm rounded-md focus:ring-teal-500  block w-full p-2.5 bg-gray-700 placeholder-gray-400 text-white  border-teal-500"
                             type="password"
                             placeholder="password"
                             required
                             {...register("password")}
                         />
                     </div>
-
+                    <p className="text-rose-600 py-1">
+                        {error?.message.split("auth/")[1].split(")")[0]}
+                    </p>
                     <input
-                        className="rounded-pill bg-sky-700 text-white"
+                        className="w-full bg-rakib-400 hover:bg-emerald-500 px-5 py-2 rounded-md text-black"
                         type="submit"
                         value="Log In"
                     />
+                    <div className="mt-5">
+                        <p>
+                            Not registered?{" "}
+                            <Link className="underline " to="/register">
+                                Click here to register...
+                            </Link>{" "}
+                        </p>
+                    </div>
                 </form>
-            </div>
-            <div>
-                <p>
-                    Not registered?{" "}
-                    <Link className="underline text-blue-600" to="/register">
-                        Click here to register...
-                    </Link>{" "}
-                </p>
             </div>
         </div>
     );
