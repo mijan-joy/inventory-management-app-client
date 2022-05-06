@@ -197,7 +197,7 @@ const AddItem = () => {
                     </div>
 
                     <input
-                        className="w-full bg-rakib-400 hover:bg-emerald-500 px-5 py-2 rounded-md text-black"
+                        className="w-full bg-rakib-400 hover:bg-emerald-500 px-5 py-2 rounded-md text-black tracking-wide"
                         type="submit"
                     />
                 </form>
