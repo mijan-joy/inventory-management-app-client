@@ -1,10 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import InventoryItem from "../InventoryItem/InventoryItem";
 
 const InventoryItems = () => {
     const [items, setItems] = useState([]);
     const [displayItemCount, setDisplayItemCount] = useState(6);
+    const [itemsCount, setItemsCount] = useState(0);
+
     useEffect(() => {
         const get = async () => {
             await axios
@@ -17,14 +20,42 @@ const InventoryItems = () => {
         };
         get();
     }, [displayItemCount]);
+    useEffect(() => {
+        const get = async () => {
+            const { data } = await axios.get(
+                "http://localhost:5000/inventorycount"
+            );
+            setItemsCount(data.count);
+            console.log("count", data);
+        };
+        get();
+    }, []);
 
     return (
-        <div className="container mx-auto p-4">
-            <h2>This is inventory items</h2>
-            <div className="grid grid-cols-3 gap-10">
-                {items.map((item) => (
-                    <InventoryItem key={item._id} item={item}></InventoryItem>
-                ))}
+        <div className="bg-gradient-to-b from-black to-gray-900 mt-14">
+            <div className="container mx-auto">
+                <h2 className="text-4xl font-bold pb-10">
+                    Inventory Items{" "}
+                    <span className="text-xl">
+                        ({items?.length} / {itemsCount})
+                    </span>
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-20 gap-y-10 justify-center py-5">
+                    {items.map((item) => (
+                        <InventoryItem
+                            key={item._id}
+                            item={item}
+                        ></InventoryItem>
+                    ))}
+                </div>
+                <div className="py-5 text-center">
+                    <Link
+                        to="/inventory/manage"
+                        className="bg-rakib-400 hover:bg-emerald-500 px-14 py-2 rounded-sm text-black"
+                    >
+                        Manage Items
+                    </Link>
+                </div>
             </div>
         </div>
     );

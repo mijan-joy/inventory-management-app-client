@@ -8,20 +8,33 @@ const InventoryItem = ({ item }) => {
         navigate(`/inventory/${id}`);
     };
     return (
-        <div className="p-2 border-emerald-500 border">
-            <div>
-                <img src={img} alt="" />
+        <div className="relative overflow-hidden bg-gradient-to-t from-black via-black to-slate-900 rounded-xl">
+            <div className="mb-12 p-3">
+                <div>
+                    <img
+                        className="max-w-[250px] w-full mx-auto"
+                        src={img}
+                        alt=""
+                    />
+                </div>
+                <h2 className="text-xl pb-3">{name}</h2>
+                <p>
+                    {description.length > 60
+                        ? description.slice(0, 60) + "..."
+                        : description}
+                </p>
+                <h4>Price: BDT. {price}</h4>
+                <p className={`${quantity < 5 ? "text-red-700" : ""}`}>
+                    Quantity: {quantity}
+                </p>
+
+                <p>Supplier: {supplier}</p>
             </div>
-            <h2>{name}</h2>
-            <h4>Price: {price}</h4>
-            <p>Quantity: {quantity}</p>
-            <p>{description}</p>
-            <p>Supplier: {supplier}</p>
             <button
                 onClick={() => {
                     handleManageBtn(_id);
                 }}
-                className="border border-b-slate-600 bg-black text-white p-2 rounded-sm"
+                className=" bg-teal-400 text-black w-full p-2 bottom-0 absolute"
             >
                 Manage Item
             </button>

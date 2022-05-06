@@ -22,7 +22,7 @@ const Header = () => {
             today.getMinutes() +
             ":" +
             today.getSeconds();
-        console.log(setTime(time));
+        setTime(time);
     }, 1000);
 
     function CustomLink({ children, to, ...props }) {
@@ -45,7 +45,7 @@ const Header = () => {
     }
 
     return (
-        <header className="sticky top-0">
+        <header className="sticky top-0 shadow-sm shadow-gray-900 z-50">
             <div className=" bg-greyblack text-white">
                 <p className=" container mx-auto text-xs font-mono">
                     <span className="mr-4">
