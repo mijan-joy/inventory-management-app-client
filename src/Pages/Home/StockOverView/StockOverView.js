@@ -1,0 +1,62 @@
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import {
+    BarChart,
+    Bar,
+    Cell,
+    XAxis,
+    YAxis,
+    CartesianGrid,
+    Tooltip,
+    Legend,
+    ResponsiveContainer,
+} from "recharts";
+
+const StockOverView = () => {
+    const [items, setItems] = useState([]);
+    useEffect(() => {
+        const get = async () => {
+            await axios
+                .get(`http://localhost:5000/inventory`)
+                .then((response) => {
+                    setItems(response.data);
+                });
+        };
+        get();
+    }, []);
+
+    return (
+        <div className="container mx-auto py-5 pt-24 bg-gray-900">
+            <div>
+                <h2 className="text-3xl font-bold pb-5 text-center">
+                    Quantity Vs Sales Overview
+                </h2>
+            </div>
+            <div>
+                <ResponsiveContainer width="100%" height={500}>
+                    <BarChart
+                        width={500}
+                        height={300}
+                        data={items}
+                        margin={{
+                            top: 20,
+                            right: 30,
+                            left: 20,
+                            bottom: 5,
+                        }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Bar dataKey="quantity" stackId="a" fill="#069A8E" />
+                        <Bar dataKey="sold" stackId="a" fill="#A1E3D8" />
+                    </BarChart>
+                </ResponsiveContainer>
+            </div>
+        </div>
+    );
+};
+
+export default StockOverView;

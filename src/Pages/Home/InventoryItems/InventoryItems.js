@@ -34,7 +34,7 @@ const InventoryItems = () => {
     return (
         <div className="bg-gradient-to-b from-black to-gray-900 mt-14">
             <div className="container mx-auto">
-                <h2 className="text-4xl font-bold pb-10">
+                <h2 className="text-4xl font-bold pb-5 text-center underline">
                     Inventory Items{" "}
                     <span className="text-xl">
                         ({items?.length} / {itemsCount})
@@ -51,7 +51,7 @@ const InventoryItems = () => {
                 <div className="py-5 pb-10 text-center">
                     <Link
                         to="/inventory/manage"
-                        className="bg-rakib-400 hover:bg-emerald-500 px-14 py-2 rounded-sm text-black"
+                        className="bg-rakib-400 hover:bg-emerald-500 px-14 py-3 rounded-sm text-black"
                     >
                         Manage Items
                     </Link>
