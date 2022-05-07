@@ -64,6 +64,9 @@ const ManageItem = () => {
     const handleManageInventoryBtn = () => {
         navigate("/inventory/manage");
     };
+    const handleUpdateBtn = (id) => {
+        navigate(`/inventory/update/${id}`);
+    };
     if (error) {
         return (
             <div className="container mx-auto text-center py-10">
@@ -104,7 +107,12 @@ const ManageItem = () => {
                         >
                             Delivered
                         </button>
-                        <button className=" bg-rakib-400 hover:bg-emerald-500 px-5 py-3 rounded-sm text-black">
+                        <button
+                            onClick={() => {
+                                handleUpdateBtn(item?._id);
+                            }}
+                            className=" bg-rakib-400 hover:bg-emerald-500 px-5 py-3 rounded-sm text-black"
+                        >
                             Update Information
                         </button>
                     </div>

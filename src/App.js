@@ -15,6 +15,7 @@ import MyItems from "./Pages/MyItems/MyItems";
 import RequireAuth from "./Pages/LogIn/RequireAuth/RequireAuth";
 import ResetPassword from "./Pages/LogIn/ResetPassword/ResetPassword";
 import NotFound from "./Pages/NotFound/NotFound";
+import UpdateItem from "./Pages/UpdateItem/UpdateItem";
 
 function App() {
     return (
@@ -53,6 +54,14 @@ function App() {
                         element={
                             <RequireAuth>
                                 <AddItem></AddItem>
+                            </RequireAuth>
+                        }
+                    ></Route>
+                    <Route
+                        path="/inventory/update/:id"
+                        element={
+                            <RequireAuth>
+                                <UpdateItem></UpdateItem>
                             </RequireAuth>
                         }
                     ></Route>
