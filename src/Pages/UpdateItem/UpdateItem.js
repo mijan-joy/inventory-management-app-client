@@ -35,7 +35,9 @@ const UpdateItem = () => {
         get();
     }, [id]);
     const onSubmit = (data) => {
-        console.log(data);
+        data.price = parseInt(data.price);
+        data.quantity = parseInt(data.quantity);
+        data.sold = parseInt(data.sold);
         const update = async () => {
             await axios
                 .put(`http://localhost:5000/inventory/${id}`, data)

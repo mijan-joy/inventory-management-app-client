@@ -11,6 +11,7 @@ import {
     Legend,
     ResponsiveContainer,
 } from "recharts";
+import Loading from "../../Shared/Loading/Loading";
 
 const StockOverView = () => {
     const [items, setItems] = useState([]);
@@ -25,6 +26,14 @@ const StockOverView = () => {
         get();
     }, []);
 
+    if (items.length === 0) {
+        return (
+            <div className="mx-auto w-48 h-48">
+                {" "}
+                <Loading></Loading>{" "}
+            </div>
+        );
+    }
     return (
         <div className="container mx-auto py-5 pt-24 bg-gray-900">
             <div>

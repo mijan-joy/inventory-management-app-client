@@ -7,8 +7,10 @@ const InventoryItem = ({ item }) => {
     const handleManageBtn = (id) => {
         navigate(`/inventory/${id}`);
     };
+
+    //relative overflow-hidden bg-gradient-to-t from-black via-black to-slate-900 rounded-xl
     return (
-        <div className="relative overflow-hidden bg-gradient-to-t from-black via-black to-slate-900 rounded-xl">
+        <div className="relative overflow-hidden bg-slate-600/10 rounded-xl">
             <div className="mb-12 p-3">
                 <div>
                     <img

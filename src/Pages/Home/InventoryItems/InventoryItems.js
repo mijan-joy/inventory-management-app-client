@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import InventoryItem from "../InventoryItem/InventoryItem";
+import Loading from "../../Shared/Loading/Loading";
 
 const InventoryItems = () => {
     const [items, setItems] = useState([]);
@@ -30,7 +31,13 @@ const InventoryItems = () => {
         };
         get();
     }, []);
-
+    if (items.length === 0) {
+        return (
+            <div className="mx-auto w-48 h-48">
+                <Loading></Loading>
+            </div>
+        );
+    }
     return (
         <div className="bg-gradient-to-b from-black to-gray-900 mt-14">
             <div className="container mx-auto">

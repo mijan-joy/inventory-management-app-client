@@ -26,7 +26,9 @@ const ManageItem = () => {
         get();
     }, [id, quantity]);
     const handleDeliveryBtn = (id) => {
-        if (item.quantity > 0) {
+        if (item.quantity <= 0) {
+            toast.error("Item is stocked out!");
+        } else {
             const update = async () => {
                 await axios
                     .put(`http://localhost:5000/inventory/${id}`, {
@@ -35,6 +37,7 @@ const ManageItem = () => {
                     })
                     .then((response) => {
                         setQuantity(item.quantity);
+                        toast.success("delivered!");
                     });
             };
             update();
@@ -101,7 +104,6 @@ const ManageItem = () => {
                         <button
                             onClick={() => {
                                 handleDeliveryBtn(item?._id);
-                                toast("delivered!");
                             }}
                             className="bg-orange-600 hover:bg-orange-500 px-5 py-3 rounded-sm text-white"
                         >
