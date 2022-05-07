@@ -1,7 +1,13 @@
 import { signOut } from "firebase/auth";
 import React, { useEffect, useMemo, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link, useMatch, useResolvedPath } from "react-router-dom";
+import {
+    Link,
+    Navigate,
+    useMatch,
+    useNavigate,
+    useResolvedPath,
+} from "react-router-dom";
 import auth from "../../../firebase.init";
 import { MenuIcon, XIcon } from "@heroicons/react/solid";
 
@@ -11,6 +17,7 @@ const Header = () => {
     const handleSignOut = () => {
         signOut(auth);
     };
+    const navigate = useNavigate();
 
     const [time, setTime] = useState("");
 
@@ -69,7 +76,10 @@ const Header = () => {
                             {open ? <XIcon></XIcon> : <MenuIcon></MenuIcon>}
                         </div>
                         <div>
-                            <h2 className="text-center text-xl text-rakib-400 mx-auto z-50">
+                            <h2
+                                onClick={() => navigate("/home")}
+                                className="text-center text-xl text-rakib-400 mx-auto z-50 cursor-pointer"
+                            >
                                 Printing Solution
                             </h2>
                         </div>
@@ -82,12 +92,15 @@ const Header = () => {
                                     : "top-[-250px] left-[0px]"
                             }`}
                         >
-                            <CustomLink className="block p-2 mr-2" to="/home">
+                            <CustomLink
+                                className="block p-2 mr-2 hover:text-rakib-400"
+                                to="/home"
+                            >
                                 Home
                             </CustomLink>
                             {user && (
                                 <CustomLink
-                                    className="block p-2 mr-2"
+                                    className="block p-2 mr-2 hover:text-rakib-400"
                                     to="/inventory/manage"
                                 >
                                     Manage Items
@@ -95,7 +108,7 @@ const Header = () => {
                             )}
                             {user && (
                                 <CustomLink
-                                    className="block p-2 mr-2"
+                                    className="block p-2 mr-2 hover:text-rakib-400"
                                     to="/inventory/myitems"
                                 >
                                     My Items
@@ -103,7 +116,7 @@ const Header = () => {
                             )}
                             {user && (
                                 <CustomLink
-                                    className="block p-2 mr-2"
+                                    className="block p-2 mr-2 hover:text-rakib-400"
                                     to="/inventory/manage/add"
                                 >
                                     Add Item
@@ -112,14 +125,14 @@ const Header = () => {
                             {user ? (
                                 <CustomLink
                                     onClick={handleSignOut}
-                                    className="block px-4 mr-2 py-1 bg-rakib-400 text-black md:rounded"
+                                    className="block px-4 mr-2 py-2 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white md:rounded"
                                     to="/login"
                                 >
                                     Sign Out
                                 </CustomLink>
                             ) : (
                                 <CustomLink
-                                    className="block px-4 py-1 mr-2  bg-white text-black md:rounded"
+                                    className="block px-4 py-2 mr-2  bg-white text-black md:rounded"
                                     to="/login"
                                 >
                                     Log In

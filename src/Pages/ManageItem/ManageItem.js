@@ -117,7 +117,7 @@ const ManageItem = () => {
                             onClick={() => {
                                 handleDeliveryBtn(item?._id);
                             }}
-                            className="bg-orange-600 hover:bg-orange-500 px-5 py-3 rounded-sm text-white"
+                            className="bg-orange-600 hover:bg-orange-500 active:bg-orange-700 px-5 py-3 rounded-sm text-white"
                         >
                             Delivered
                         </button>
@@ -125,7 +125,7 @@ const ManageItem = () => {
                             onClick={() => {
                                 handleUpdateBtn(item?._id);
                             }}
-                            className=" bg-rakib-400 hover:bg-emerald-500 px-5 py-3 rounded-sm text-black"
+                            className=" bg-rakib-400 hover:bg-emerald-300 active:bg-emerald-600 px-5 py-3 rounded-sm text-black"
                         >
                             Update Information
                         </button>
@@ -157,7 +157,7 @@ const ManageItem = () => {
                     </div>
                     <div className="mb-7">
                         <input
-                            className="w-full bg-rakib-400 hover:bg-emerald-500 px-5 py-2 rounded-md text-black tracking-wide"
+                            className="w-full bg-emerald-500 hover:bg-rakib-400 active:bg-emerald-600 px-5 py-2 rounded-md text-black tracking-wide"
                             type="submit"
                             value="Restock"
                         />
@@ -165,7 +165,7 @@ const ManageItem = () => {
                     <div>
                         <button
                             onClick={handleManageInventoryBtn}
-                            className="w-full bg-teal-400 hover:bg-teal-500 px-5 py-2 rounded-md text-black tracking-wide"
+                            className="w-full bg-teal-500 hover:bg-teal-400 active:bg-teal-600 px-5 py-2 rounded-md text-black tracking-wide"
                         >
                             Manage Inventory
                         </button>

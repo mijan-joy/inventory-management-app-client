@@ -42,22 +42,6 @@ const UpdateItem = () => {
         data.quantity = parseInt(data.quantity);
         data.sold = parseInt(data.sold);
         const update = async () => {
-            // const proceed = window.confirm(
-            //     "Updating will add this item to My Items also, confirm?"
-            // );
-            // if (proceed) {
-            //     await axios
-            //         .put(
-            //             `https://ps-wms-server.herokuapp.com/inventory/${id}`,
-            //             data
-            //         )
-            //         .then((response) => {
-            //             setItem(data);
-            //             toast.success("Item information updated.");
-            //             navigate(`/inventory/${id}`);
-            //         });
-            // }
-
             confirmAlert({
                 title: "Confirm to Update?",
                 message: "This item will be added to my item also. OK?",
@@ -289,14 +273,14 @@ const UpdateItem = () => {
                     </div>
 
                     <input
-                        className="w-full bg-rakib-400 hover:bg-emerald-500 px-5 py-2 rounded-md text-black tracking-wide"
+                        className="w-full bg-rakib-400 hover:bg-emerald-500 active:bg-emerald-600 px-5 py-2 rounded-md text-black tracking-wide"
                         type="submit"
                         value="Update Item"
                     />
                 </form>
                 <div className="mx-auto py-5">
                     <Link
-                        className="w-full bg-rakib-400 hover:bg-emerald-500 px-6 py-3 rounded-md text-black tracking-wide"
+                        className="w-full bg-rakib-400 hover:bg-emerald-500 active:bg-emerald-600  px-6 py-3 rounded-md text-black tracking-wide"
                         to={`/inventory/${id}`}
                     >
                         <ArrowLeftIcon className="inline h-4 w-4 text-white"></ArrowLeftIcon>{" "}
@@ -305,14 +289,14 @@ const UpdateItem = () => {
                 </div>
                 <div className="mx-auto py-5">
                     <Link
-                        className="w-full bg-orange-600 hover:bg-orange-500 px-6 py-3 rounded-md text-white tracking-wide mr-5"
+                        className="w-full bg-orange-600 hover:bg-orange-500 active:bg-orange-700 px-6 py-3 rounded-md text-white tracking-wide mr-5"
                         to="/inventory/manage"
                     >
                         <ArrowLeftIcon className="inline h-4 w-4 text-white"></ArrowLeftIcon>{" "}
                         Back to Inventory
                     </Link>
                     <Link
-                        className="w-full bg-orange-600 hover:bg-orange-500 px-6 py-3 rounded-md text-white tracking-wide"
+                        className="w-full bg-orange-600 hover:bg-orange-500 active:bg-orange-700 px-6 py-3 rounded-md text-white tracking-wide"
                         to="/inventory/myitems"
                     >
                         <ArrowLeftIcon className="inline h-4 w-4 text-white"></ArrowLeftIcon>{" "}

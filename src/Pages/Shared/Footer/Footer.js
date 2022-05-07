@@ -15,27 +15,30 @@ const Footer = () => {
                 </div>
                 <div className="mb-7 sm:mb-0">
                     <h2 className="text-2xl pb-3">Useful Links:</h2>
-                    <Link to="/" className="block py-2">
+                    <button
+                        to="/nowhere"
+                        className="block py-2 hover:underline"
+                    >
                         Docs
-                    </Link>
-                    <Link to="/" className="block py-2">
+                    </button>
+                    <button to="/" className="block py-2 hover:underline">
                         Terms & Condition
-                    </Link>
-                    <Link to="/" className="block py-2">
+                    </button>
+                    <button to="/" className="block py-2 hover:underline">
                         Usage Policies
-                    </Link>
+                    </button>
                 </div>
                 <div className="mb-7 sm:mb-0">
                     <h2 className="text-2xl pb-3">Company</h2>
-                    <Link to="/" className="block py-2">
+                    <button className="block py-2 hover:underline">
                         About
-                    </Link>
-                    <Link to="/" className="block py-2">
+                    </button>
+                    <button className="block py-2 hover:underline">
                         Career
-                    </Link>
-                    <Link to="/" className="block py-2">
+                    </button>
+                    <button to="/" className="block py-2 hover:underline">
                         Contact
-                    </Link>
+                    </button>
                 </div>
             </div>
         </footer>

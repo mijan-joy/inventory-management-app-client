@@ -28,7 +28,7 @@ const InventoryItem = ({ item }) => {
             </div>
             <Link
                 to={`/inventory/${_id}`}
-                className=" bg-teal-400 text-black w-full p-3 bottom-0 absolute text-center font-bold"
+                className=" bg-teal-500 hover:bg-teal-400 active:bg-teal-700 text-black w-full p-3 bottom-0 absolute text-center font-bold"
             >
                 Manage Item
             </Link>

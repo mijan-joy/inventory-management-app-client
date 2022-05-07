@@ -18,13 +18,13 @@ const Banner = () => {
             <div className="pt-10">
                 <Link
                     to="/"
-                    className="inline-block bg-rakib-400 hover:bg-emerald-500 px-6 py-3 rounded-sm text-black mx-2 mb-3"
+                    className="inline-block bg-rakib-400 hover:bg-emerald-500 active:bg-emerald-700 px-6 py-3 rounded-sm text-black mx-2 mb-3"
                 >
                     Read the Docs
                 </Link>
                 <Link
                     to="/inventory/manage"
-                    className="inline-block mx-2 bg-teal-400 hover:bg-teal-500 px-6 py-3 rounded-sm text-black"
+                    className="inline-block mx-2 bg-teal-400 hover:bg-teal-500 active:bg-teal-700 px-6 py-3 rounded-sm text-black"
                 >
                     Go to Inventory
                 </Link>

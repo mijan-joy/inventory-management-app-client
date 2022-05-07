@@ -216,14 +216,14 @@ const AddItem = () => {
                     </div>
 
                     <input
-                        className="w-full bg-rakib-400 hover:bg-emerald-500 px-5 py-2 rounded-md text-black tracking-wide"
+                        className="w-full bg-rakib-400 hover:bg-emerald-500 active:bg-emerald-600 px-5 py-2 rounded-md text-black tracking-wide"
                         type="submit"
                         value="Add Item"
                     />
                 </form>
                 <div className="mx-auto py-5">
                     <Link
-                        className="w-full bg-rakib-400 hover:bg-emerald-500 px-5 py-2 rounded-md text-black tracking-wide"
+                        className="w-full bg-rakib-400 hover:bg-emerald-500 active:bg-emerald-600 px-5 py-2 rounded-md text-black tracking-wide"
                         to="/inventory/myitems"
                     >
                         Go to my items
