@@ -7,7 +7,7 @@ import Loading from "../Shared/Loading/Loading";
 
 const ManageItem = () => {
     const { id } = useParams();
-    const [item, setItem] = useState({});
+    const [item, setItem] = useState(null);
     const [quantity, setQuantity] = useState(0);
     const navigate = useNavigate();
     const [error, setError] = useState("");
@@ -75,7 +75,7 @@ const ManageItem = () => {
     const handleUpdateBtn = (id) => {
         navigate(`/inventory/update/${id}`);
     };
-    if (!item.name) {
+    if (!item) {
         return (
             <div className="mx-auto w-48 h-48">
                 <Loading></Loading>

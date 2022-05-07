@@ -2,17 +2,17 @@ import axios from "axios";
 import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { get } from "react-hook-form";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import { PencilAltIcon, TrashIcon } from "@heroicons/react/solid";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import Loading from "../Shared/Loading/Loading";
+import "animate.css";
 
 const MyItems = () => {
     const [user] = useAuthState(auth);
-    const [myItems, setMyItems] = useState([]);
+    const [myItems, setMyItems] = useState(null);
     const navigate = useNavigate();
     useEffect(() => {
         const get = async () => {
@@ -78,7 +78,7 @@ const MyItems = () => {
     const handleAddBtn = () => {
         navigate("/inventory/manage/add");
     };
-    if (myItems.length === 0) {
+    if (!myItems) {
         return (
             <div className="mx-auto w-48 h-48">
                 <Loading></Loading>
@@ -99,7 +99,7 @@ const MyItems = () => {
                 </div>
             </div>
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table className="w-full text-sm text-left text-gray-500 ">
+                <table className="w-full text-sm text-left text-gray-500 animate__animated animate__fadeInUp animate__faster">
                     <thead className="text-xs text-white uppercase bg-gray-800 ">
                         <tr>
                             <th className="px-6 py-3">Name</th>

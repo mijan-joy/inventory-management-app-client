@@ -10,7 +10,7 @@ import ManageInventory from "./Pages/ManageInventory/ManageInventory";
 import AddItem from "./Pages/AddItem/AddItem";
 import LogIn from "./Pages/LogIn/LogIn";
 import Register from "./Pages/LogIn/Register/Register";
-import VerifyEmail from "./Pages/VerifyEmail/VerifyEmail";
+import VerifyEmail from "./Pages/LogIn/VerifyEmail/VerifyEmail";
 import MyItems from "./Pages/MyItems/MyItems";
 import RequireAuth from "./Pages/LogIn/RequireAuth/RequireAuth";
 import ResetPassword from "./Pages/LogIn/ResetPassword/ResetPassword";
@@ -67,7 +67,7 @@ function App() {
                     ></Route>
                     <Route path="/login" element={<LogIn></LogIn>}></Route>
                     <Route
-                        path="/register"
+                        path="/login/register"
                         element={<Register></Register>}
                     ></Route>
                     <Route

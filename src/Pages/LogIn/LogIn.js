@@ -113,7 +113,7 @@ const LogIn = () => {
                             Not registered?{" "}
                             <Link
                                 className="underline text-emerald-400"
-                                to="/register"
+                                to="/login/register"
                             >
                                 Click here to register...
                             </Link>{" "}

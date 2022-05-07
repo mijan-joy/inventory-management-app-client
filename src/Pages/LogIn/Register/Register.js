@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, Navigate, useLocation } from "react-router-dom";
 import {
     useCreateUserWithEmailAndPassword,
     useSendEmailVerification,
@@ -19,6 +19,8 @@ const Register = () => {
         formState: { errors },
         handleSubmit,
     } = useForm();
+    // const location = useLocation();
+    // let from = location.state?.from?.pathname || "/";
     const [createUserWithEmailAndPassword, user, loading, error] =
         useCreateUserWithEmailAndPassword(auth);
     const [sendEmailVerification, sending, verificationError] =
@@ -34,9 +36,11 @@ const Register = () => {
         await createUserWithEmailAndPassword(email, password);
         await sendEmailVerification().then(toast("Verification email sent!"));
         await updateProfile({ displayName });
-        signOut(auth);
+        // <Navigate to="/login" state={{ from: location }} replace></Navigate>;
+        // signOut(auth);
         navigate("/verifyemail");
     };
+
     return (
         <div className="container mx-auto py-5">
             <h2 className="text-xl text-center">Please register</h2>

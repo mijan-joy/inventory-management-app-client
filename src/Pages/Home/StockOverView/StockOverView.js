@@ -14,7 +14,7 @@ import {
 import Loading from "../../Shared/Loading/Loading";
 
 const StockOverView = () => {
-    const [items, setItems] = useState([]);
+    const [items, setItems] = useState(null);
     useEffect(() => {
         const get = async () => {
             await axios
@@ -26,7 +26,7 @@ const StockOverView = () => {
         get();
     }, []);
 
-    if (items.length === 0) {
+    if (!items) {
         return (
             <div className="mx-auto w-48 h-48">
                 {" "}

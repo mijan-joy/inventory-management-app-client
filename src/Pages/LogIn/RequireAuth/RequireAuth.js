@@ -18,18 +18,24 @@ const RequireAuth = ({ children }) => {
             </div>
         );
     }
-
+    if (
+        user?.providerData[0]?.providerId === "password" &&
+        !user?.emailVerified
+    ) {
+        return (
+            <Navigate
+                to="/verifyemail"
+                state={{ from: location }}
+                replace
+            ></Navigate>
+        );
+    }
     if (!user) {
         return (
             <Navigate to="/login" state={{ from: location }} replace></Navigate>
         );
     }
-    if (
-        user.providerData[0]?.providerId === "password" &&
-        !user.emailVerified
-    ) {
-        navigate("/verifyemail");
-    }
+
     return children;
 };
 

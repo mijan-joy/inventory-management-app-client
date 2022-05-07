@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
+import "animate.css";
 
 const AddItem = () => {
     const [user] = useAuthState(auth);
@@ -37,7 +38,7 @@ const AddItem = () => {
             </h2>
             <div className="max-w-[500px] mx-auto py-5">
                 <form
-                    className="p-5 bg-darkbg rounded-md border border-emerald-500"
+                    className="p-5 bg-darkbg rounded-md border border-emerald-500 animate__animated animate__fadeInUp animate__faster"
                     onSubmit={handleSubmit(onSubmit)}
                 >
                     <div className="mb-7">

@@ -54,7 +54,7 @@ const SocialLogin = () => {
                 </p>
                 <button
                     onClick={handleSignInWithGoogle}
-                    className="bg-emerald-400 text-black p-2 px-3 mt-3 rounded hover:bg-emerald-500 animate__animated animate__fadeInUp animate__fast	800ms"
+                    className="bg-emerald-400 text-black p-2 px-3 mt-3 rounded hover:bg-emerald-500"
                 >
                     <img className="w-10 inline" src={google} alt="" /> Sign in
                     with Google

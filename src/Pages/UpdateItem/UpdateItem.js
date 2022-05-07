@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import "animate.css";
 
 const UpdateItem = () => {
     const [user] = useAuthState(auth);
@@ -105,7 +106,7 @@ const UpdateItem = () => {
             </h2>
             <div className="max-w-[500px] mx-auto py-5">
                 <form
-                    className="p-5 bg-darkbg rounded-md border border-emerald-500"
+                    className="p-5 bg-darkbg rounded-md border border-emerald-500 animate__animated animate__fadeInUp animate__faster"
                     onSubmit={handleSubmit(onSubmit)}
                 >
                     <div className="mb-7">

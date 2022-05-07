@@ -5,9 +5,10 @@ import { PencilAltIcon, TrashIcon } from "@heroicons/react/solid";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import Loading from "../Shared/Loading/Loading";
+import "animate.css";
 
 const ManageInventory = () => {
-    const [items, setItems] = useState([]);
+    const [items, setItems] = useState(null);
     const navigate = useNavigate();
     useEffect(() => {
         const get = async () => {
@@ -65,7 +66,7 @@ const ManageInventory = () => {
     const handleAddBtn = () => {
         navigate("/inventory/manage/add");
     };
-    if (items.length === 0) {
+    if (!items) {
         return (
             <div className="mx-auto w-48 h-48">
                 <Loading></Loading>
@@ -74,7 +75,7 @@ const ManageInventory = () => {
     }
     return (
         <div className="container mx-auto py-5">
-            <div className="py-5 flex items-center">
+            <div className="py-5 flex items-center  ">
                 <h2 className="pr-5 text-xl">Total Items: {items.length}</h2>
                 <div>
                     <button
@@ -86,7 +87,7 @@ const ManageInventory = () => {
                 </div>
             </div>
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table className="w-full text-sm text-left text-gray-500 ">
+                <table className="w-full text-sm text-left text-gray-500 animate__animated animate__fadeInUp animate__faster">
                     <thead className="text-xs text-white uppercase bg-gray-800 ">
                         <tr>
                             <th className="px-6 py-3">Name</th>

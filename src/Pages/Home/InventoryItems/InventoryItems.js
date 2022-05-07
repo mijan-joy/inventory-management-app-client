@@ -5,7 +5,7 @@ import InventoryItem from "../InventoryItem/InventoryItem";
 import Loading from "../../Shared/Loading/Loading";
 
 const InventoryItems = () => {
-    const [items, setItems] = useState([]);
+    const [items, setItems] = useState(null);
     const [displayItemCount, setDisplayItemCount] = useState(6);
     const [itemsCount, setItemsCount] = useState(0);
 
@@ -30,7 +30,7 @@ const InventoryItems = () => {
         };
         get();
     }, []);
-    if (items.length === 0) {
+    if (!items) {
         return (
             <div className="mx-auto w-48 h-48">
                 <Loading></Loading>
