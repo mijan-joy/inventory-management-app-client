@@ -9,14 +9,19 @@ const ManageItem = () => {
     const [item, setItem] = useState({});
     const [quantity, setQuantity] = useState(0);
     const navigate = useNavigate();
+    const [error, setError] = useState("");
 
     useEffect(() => {
         const get = async () => {
-            await axios
-                .get(`http://localhost:5000/inventory/${id}`)
-                .then((response) => {
-                    setItem(response.data);
-                });
+            try {
+                await axios
+                    .get(`http://localhost:5000/inventory/${id}`)
+                    .then((response) => {
+                        setItem(response.data);
+                    });
+            } catch (error) {
+                setError(error);
+            }
         };
         get();
     }, [id, quantity]);
@@ -57,6 +62,18 @@ const ManageItem = () => {
     const handleManageInventoryBtn = () => {
         navigate("/inventory/manage");
     };
+    if (error) {
+        return (
+            <div className="container mx-auto text-center py-10">
+                <p className="text-2xl font-bold text-rose-600">
+                    {error?.response.status}
+                </p>
+                <p className="text-3xl font-bold text-rose-600">
+                    {error?.response.statusText}
+                </p>
+            </div>
+        );
+    }
     return (
         <div className="container mx-auto">
             <div className="md:flex items-center justify-evenly">

@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 
 const AddItem = () => {
@@ -18,7 +20,8 @@ const AddItem = () => {
         const post = async () => {
             await axios
                 .post("http://localhost:5000/inventory/manage/add", data)
-                .then((response) => console.log(response));
+                .then((response) => console.log(response))
+                .then(toast.success("Item add successful"));
         };
         post();
     };
@@ -209,8 +212,17 @@ const AddItem = () => {
                     <input
                         className="w-full bg-rakib-400 hover:bg-emerald-500 px-5 py-2 rounded-md text-black tracking-wide"
                         type="submit"
+                        value="Add Item"
                     />
                 </form>
+                <div className="mx-auto py-5">
+                    <Link
+                        className="w-full bg-rakib-400 hover:bg-emerald-500 px-5 py-2 rounded-md text-black tracking-wide"
+                        to="/inventory/myitems"
+                    >
+                        Go to my items
+                    </Link>
+                </div>
             </div>
         </div>
     );
