@@ -57,6 +57,7 @@ const LogIn = () => {
                             className="border   text-sm rounded-md focus:ring-teal-500  block w-full p-2.5 bg-gray-700 placeholder-gray-400 text-white  border-teal-500"
                             type="email"
                             placeholder="Enter email"
+                            autoComplete="off"
                             required
                             {...register("email")}
                         />
@@ -87,8 +88,22 @@ const LogIn = () => {
                     <div className="mt-5">
                         <p>
                             Not registered?{" "}
-                            <Link className="underline " to="/register">
+                            <Link
+                                className="underline text-emerald-400"
+                                to="/register"
+                            >
                                 Click here to register...
+                            </Link>{" "}
+                        </p>
+                    </div>
+                    <div className="mt-5">
+                        <p>
+                            Forgot Password?{" "}
+                            <Link
+                                className="underline text-emerald-400"
+                                to="/resetpassword"
+                            >
+                                Reset Now...
                             </Link>{" "}
                         </p>
                     </div>

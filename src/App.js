@@ -13,6 +13,8 @@ import Register from "./Pages/Register/Register";
 import VerifyEmail from "./Pages/VerifyEmail/VerifyEmail";
 import MyItems from "./Pages/MyItems/MyItems";
 import RequireAuth from "./Pages/LogIn/RequireAuth/RequireAuth";
+import ResetPassword from "./Pages/LogIn/ResetPassword/ResetPassword";
+import ResetSuccessful from "./Pages/LogIn/ResetSuccessful/ResetSuccessful";
 
 function App() {
     return (
@@ -62,6 +64,14 @@ function App() {
                     <Route
                         path="/verifyemail"
                         element={<VerifyEmail></VerifyEmail>}
+                    ></Route>
+                    <Route
+                        path="/resetpassword"
+                        element={<ResetPassword></ResetPassword>}
+                    ></Route>
+                    <Route
+                        path="/resetsuccessful"
+                        element={<ResetSuccessful></ResetSuccessful>}
                     ></Route>
                 </Routes>
             </div>
