@@ -2,14 +2,13 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useSendPasswordResetEmail } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Loading from "../../Shared/Loading/Loading";
 
 const ResetPassword = () => {
     const [sendPasswordResetEmail, sending, error] =
         useSendPasswordResetEmail(auth);
-    const navigate = useNavigate();
+
     const {
         register,
         formState: { errors },

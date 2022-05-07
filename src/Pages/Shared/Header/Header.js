@@ -1,13 +1,7 @@
 import { signOut } from "firebase/auth";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import {
-    Link,
-    Navigate,
-    useMatch,
-    useNavigate,
-    useResolvedPath,
-} from "react-router-dom";
+import { Link, useMatch, useNavigate, useResolvedPath } from "react-router-dom";
 import auth from "../../../firebase.init";
 import { MenuIcon, XIcon } from "@heroicons/react/solid";
 

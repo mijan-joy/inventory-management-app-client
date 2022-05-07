@@ -20,7 +20,6 @@ const UpdateItem = () => {
         register,
         formState: { errors },
         handleSubmit,
-        reset,
     } = useForm();
 
     useEffect(() => {
