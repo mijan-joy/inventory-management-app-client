@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 import axios from "axios";
 import SocialLogin from "./SocialLogin/SocialLogin";
+import Loading from "../Shared/Loading/Loading";
 
 const LogIn = () => {
     const {
@@ -93,11 +94,17 @@ const LogIn = () => {
                     <p className="text-rose-600 py-1">
                         {error?.message.split("auth/")[1].split(")")[0]}
                     </p>
-                    <input
-                        className="w-full bg-rakib-400 hover:bg-emerald-500 px-5 py-2 rounded-md text-black"
-                        type="submit"
-                        value="Log In"
-                    />
+                    {loading ? (
+                        <div className="w-16 h-16 mx-auto">
+                            <Loading></Loading>
+                        </div>
+                    ) : (
+                        <input
+                            className="w-full bg-rakib-400 hover:bg-emerald-500 px-5 py-2 rounded-md text-black"
+                            type="submit"
+                            value="Log In"
+                        />
+                    )}
                     <div className="mt-5">
                         <p>
                             Not registered?{" "}

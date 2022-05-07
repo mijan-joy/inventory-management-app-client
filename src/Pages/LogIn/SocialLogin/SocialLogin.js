@@ -27,17 +27,6 @@ const SocialLogin = () => {
             post();
         }
     }, [from, user, navigate]);
-    // useEffect(() => {
-    //     const email = user?.email;
-    //     const post = async () => {
-    //         console.log(email);
-    //         const { data } = await axios.post(`http://localhost:5000/login`, {
-    //             email,
-    //         });
-    //         localStorage.setItem("authToken", data.authToken);
-    //     };
-    //     post();
-    // }, [user]);
 
     if (loading) {
         return (

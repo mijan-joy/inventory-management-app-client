@@ -10,6 +10,7 @@ import auth from "../../firebase.init";
 import { toast } from "react-toastify";
 import { signOut } from "firebase/auth";
 import SocialLogin from "../LogIn/SocialLogin/SocialLogin";
+import Loading from "../Shared/Loading/Loading";
 
 const Register = () => {
     const navigate = useNavigate();
@@ -108,11 +109,18 @@ const Register = () => {
                         )}
                     </div>
 
-                    <input
-                        className="w-full bg-rakib-400 hover:bg-emerald-500 px-5 py-2 rounded-md text-black"
-                        type="submit"
-                        value="Register"
-                    />
+                    {loading ? (
+                        <div className="w-16 h-16 mx-auto">
+                            <Loading></Loading>
+                        </div>
+                    ) : (
+                        <input
+                            className="w-full bg-rakib-400 hover:bg-emerald-500 px-5 py-2 rounded-md text-black"
+                            type="submit"
+                            value="Register"
+                        />
+                    )}
+
                     <div className="py-3">
                         <p>
                             Already registered?{" "}
