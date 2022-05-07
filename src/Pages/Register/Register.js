@@ -9,6 +9,7 @@ import {
 import auth from "../../firebase.init";
 import { toast } from "react-toastify";
 import { signOut } from "firebase/auth";
+import SocialLogin from "../LogIn/SocialLogin/SocialLogin";
 
 const Register = () => {
     const navigate = useNavigate();
@@ -107,11 +108,15 @@ const Register = () => {
                     <div className="py-3">
                         <p>
                             Already registered?{" "}
-                            <Link className="underline text-white" to="/login">
+                            <Link
+                                className="underline text-emerald-400"
+                                to="/login"
+                            >
                                 Click here to log in...
                             </Link>{" "}
                         </p>
                     </div>
+                    <SocialLogin></SocialLogin>
                 </form>
             </div>
         </div>

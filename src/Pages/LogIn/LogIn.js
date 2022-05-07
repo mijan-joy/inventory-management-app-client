@@ -5,6 +5,7 @@ import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 import axios from "axios";
+import SocialLogin from "./SocialLogin/SocialLogin";
 
 const LogIn = () => {
     const { register, handleSubmit } = useForm();
@@ -107,6 +108,7 @@ const LogIn = () => {
                             </Link>{" "}
                         </p>
                     </div>
+                    <SocialLogin></SocialLogin>
                 </form>
             </div>
         </div>
