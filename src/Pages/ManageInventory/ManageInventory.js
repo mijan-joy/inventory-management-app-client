@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { confirm } from "react-confirm-box";
 import { PencilAltIcon, TrashIcon } from "@heroicons/react/solid";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+import Loading from "../Shared/Loading/Loading";
 
 const ManageInventory = () => {
     const [items, setItems] = useState([]);
@@ -19,16 +21,43 @@ const ManageInventory = () => {
     }, []);
     const handleDeleteBtn = async (id) => {
         // const proceed = window.confirm("do you want ot delete?");
-        const result = await confirm("Confirm Delete?");
-        if (result) {
-            await axios
-                .delete(`https://ps-wms-server.herokuapp.com/inventory/${id}`)
-                .then((response) => {
-                    console.log(response);
-                    const rest = items.filter((item) => item._id !== id);
-                    setItems(rest);
-                });
-        }
+
+        // if (proceed) {
+        //     await axios
+        //         .delete(`https://ps-wms-server.herokuapp.com/inventory/${id}`)
+        //         .then((response) => {
+        //             console.log(response);
+        //             const rest = items.filter((item) => item._id !== id);
+        //             setItems(rest);
+        //         });
+        // }
+
+        confirmAlert({
+            title: "Confirm to Delete",
+            message: "Are you sure to do this?",
+            buttons: [
+                {
+                    label: "Yes",
+                    onClick: async () => {
+                        await axios
+                            .delete(
+                                `https://ps-wms-server.herokuapp.com/inventory/${id}`
+                            )
+                            .then((response) => {
+                                console.log(response);
+                                const rest = items.filter(
+                                    (item) => item._id !== id
+                                );
+                                setItems(rest);
+                            });
+                    },
+                },
+                {
+                    label: "No",
+                    onClick: () => {},
+                },
+            ],
+        });
     };
     const handleModifyBtn = (id) => {
         navigate(`/inventory/${id}`);
@@ -36,6 +65,13 @@ const ManageInventory = () => {
     const handleAddBtn = () => {
         navigate("/inventory/manage/add");
     };
+    if (items.length === 0) {
+        return (
+            <div className="mx-auto w-48 h-48">
+                <Loading></Loading>
+            </div>
+        );
+    }
     return (
         <div className="container mx-auto py-5">
             <div className="py-5 flex items-center">

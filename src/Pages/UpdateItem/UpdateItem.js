@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 const UpdateItem = () => {
     const [user] = useAuthState(auth);
@@ -39,16 +41,47 @@ const UpdateItem = () => {
         data.quantity = parseInt(data.quantity);
         data.sold = parseInt(data.sold);
         const update = async () => {
-            await axios
-                .put(
-                    `https://ps-wms-server.herokuapp.com/inventory/${id}`,
-                    data
-                )
-                .then((response) => {
-                    setItem(data);
-                    toast.success("Item information updated.");
-                    navigate(`/inventory/${id}`);
-                });
+            // const proceed = window.confirm(
+            //     "Updating will add this item to My Items also, confirm?"
+            // );
+            // if (proceed) {
+            //     await axios
+            //         .put(
+            //             `https://ps-wms-server.herokuapp.com/inventory/${id}`,
+            //             data
+            //         )
+            //         .then((response) => {
+            //             setItem(data);
+            //             toast.success("Item information updated.");
+            //             navigate(`/inventory/${id}`);
+            //         });
+            // }
+
+            confirmAlert({
+                title: "Confirm to Update?",
+                message: "This item will be added to my item also. OK?",
+                buttons: [
+                    {
+                        label: "Yes",
+                        onClick: async () => {
+                            await axios
+                                .put(
+                                    `https://ps-wms-server.herokuapp.com/inventory/${id}`,
+                                    data
+                                )
+                                .then((response) => {
+                                    setItem(data);
+                                    toast.success("Item information updated.");
+                                    navigate(`/inventory/${id}`);
+                                });
+                        },
+                    },
+                    {
+                        label: "No",
+                        onClick: () => {},
+                    },
+                ],
+            });
         };
         update();
     };

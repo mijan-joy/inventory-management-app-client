@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Home from "./Pages/Home/Home";
+import Home from "./Pages/Home/Home/Home";
 import ManageItem from "./Pages/ManageItem/ManageItem";
 import Footer from "./Pages/Shared/Footer/Footer";
 import Header from "./Pages/Shared/Header/Header";
@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ManageInventory from "./Pages/ManageInventory/ManageInventory";
 import AddItem from "./Pages/AddItem/AddItem";
 import LogIn from "./Pages/LogIn/LogIn";
-import Register from "./Pages/Register/Register";
+import Register from "./Pages/LogIn/Register/Register";
 import VerifyEmail from "./Pages/VerifyEmail/VerifyEmail";
 import MyItems from "./Pages/MyItems/MyItems";
 import RequireAuth from "./Pages/LogIn/RequireAuth/RequireAuth";

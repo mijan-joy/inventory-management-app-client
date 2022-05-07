@@ -6,11 +6,11 @@ import {
     useSendEmailVerification,
     useUpdateProfile,
 } from "react-firebase-hooks/auth";
-import auth from "../../firebase.init";
+import auth from "../../../firebase.init";
 import { toast } from "react-toastify";
 import { signOut } from "firebase/auth";
-import SocialLogin from "../LogIn/SocialLogin/SocialLogin";
-import Loading from "../Shared/Loading/Loading";
+import SocialLogin from "../SocialLogin/SocialLogin";
+import Loading from "../../Shared/Loading/Loading";
 
 const Register = () => {
     const navigate = useNavigate();
