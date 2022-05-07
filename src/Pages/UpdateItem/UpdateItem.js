@@ -258,10 +258,26 @@ const UpdateItem = () => {
                 <div className="mx-auto py-5">
                     <Link
                         className="w-full bg-rakib-400 hover:bg-emerald-500 px-6 py-3 rounded-md text-black tracking-wide"
+                        to={`/inventory/${id}`}
+                    >
+                        <ArrowLeftIcon className="inline h-4 w-4 text-white"></ArrowLeftIcon>{" "}
+                        Back to Item Page
+                    </Link>
+                </div>
+                <div className="mx-auto py-5">
+                    <Link
+                        className="w-full bg-orange-600 hover:bg-orange-500 px-6 py-3 rounded-md text-white tracking-wide mr-5"
                         to="/inventory/manage"
                     >
-                        <ArrowLeftIcon className="inline h-4 w-4 text-black"></ArrowLeftIcon>{" "}
+                        <ArrowLeftIcon className="inline h-4 w-4 text-white"></ArrowLeftIcon>{" "}
                         Back to Inventory
+                    </Link>
+                    <Link
+                        className="w-full bg-orange-600 hover:bg-orange-500 px-6 py-3 rounded-md text-white tracking-wide"
+                        to="/inventory/myitems"
+                    >
+                        <ArrowLeftIcon className="inline h-4 w-4 text-white"></ArrowLeftIcon>{" "}
+                        Back to My Items
                     </Link>
                 </div>
             </div>

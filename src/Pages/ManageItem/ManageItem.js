@@ -103,7 +103,7 @@ const ManageItem = () => {
                                 handleDeliveryBtn(item?._id);
                                 toast("delivered!");
                             }}
-                            className="bg-orange-600 hover:bg-orange-500 px-5 py-3 rounded-sm text-black"
+                            className="bg-orange-600 hover:bg-orange-500 px-5 py-3 rounded-sm text-white"
                         >
                             Delivered
                         </button>
