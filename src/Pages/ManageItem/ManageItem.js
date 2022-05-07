@@ -44,6 +44,7 @@ const ManageItem = () => {
         register,
         formState: { errors },
         handleSubmit,
+        reset,
     } = useForm();
     const onSubmit = (data) => {
         console.log(data);
@@ -53,11 +54,12 @@ const ManageItem = () => {
                     quantity: item.quantity + parseInt(data.quantity),
                 })
                 .then((response) => {
-                    console.log(response);
                     setQuantity(item.quantity);
+                    toast.success("Quantity added!");
                 });
         };
         update();
+        reset();
     };
     const handleManageInventoryBtn = () => {
         navigate("/inventory/manage");

@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
+import ResetSuccessful from "../LogIn/ResetSuccessful/ResetSuccessful";
 
 const AddItem = () => {
     const [user] = useAuthState(auth);
@@ -12,6 +13,7 @@ const AddItem = () => {
         register,
         formState: { errors },
         handleSubmit,
+        reset,
     } = useForm();
     const onSubmit = (data) => {
         data.quantity = parseInt(data.quantity);
@@ -24,6 +26,7 @@ const AddItem = () => {
                 .then(toast.success("Item add successful"));
         };
         post();
+        reset();
     };
     return (
         <div className="container mx-auto">
