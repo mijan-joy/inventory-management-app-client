@@ -6,11 +6,11 @@ import StockOverView from "./StockOverView/StockOverView";
 
 const Home = () => {
     return (
-        <div>
+        <div className="">
             <Banner></Banner>
+            <InventoryHealth></InventoryHealth>
             <InventoryItems></InventoryItems>
             <StockOverView></StockOverView>
-            <InventoryHealth></InventoryHealth>
         </div>
     );
 };
