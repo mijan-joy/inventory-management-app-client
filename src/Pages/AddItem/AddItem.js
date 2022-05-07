@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
-import ResetSuccessful from "../LogIn/ResetSuccessful/ResetSuccessful";
 
 const AddItem = () => {
     const [user] = useAuthState(auth);

@@ -48,7 +48,7 @@ const Header = () => {
         <header className="sticky top-0 shadow-sm shadow-gray-900 z-50">
             <div className=" bg-greyblack text-white">
                 <p className=" container mx-auto text-xs font-mono">
-                    <span className="mr-4">
+                    <span className="mr-4 hidden sm:inline">
                         PS Warehouse Management System V.1.0.0{" "}
                     </span>{" "}
                     {user && (

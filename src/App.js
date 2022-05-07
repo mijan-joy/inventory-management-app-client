@@ -14,7 +14,7 @@ import VerifyEmail from "./Pages/VerifyEmail/VerifyEmail";
 import MyItems from "./Pages/MyItems/MyItems";
 import RequireAuth from "./Pages/LogIn/RequireAuth/RequireAuth";
 import ResetPassword from "./Pages/LogIn/ResetPassword/ResetPassword";
-import ResetSuccessful from "./Pages/LogIn/ResetSuccessful/ResetSuccessful";
+import NotFound from "./Pages/NotFound/NotFound";
 
 function App() {
     return (
@@ -69,10 +69,7 @@ function App() {
                         path="/resetpassword"
                         element={<ResetPassword></ResetPassword>}
                     ></Route>
-                    <Route
-                        path="/resetsuccessful"
-                        element={<ResetSuccessful></ResetSuccessful>}
-                    ></Route>
+                    <Route path="*" element={<NotFound></NotFound>}></Route>
                 </Routes>
             </div>
             <Footer></Footer>
