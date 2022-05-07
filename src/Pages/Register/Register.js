@@ -55,8 +55,10 @@ const Register = () => {
                             className="border   text-sm rounded-md focus:ring-teal-500  block w-full p-2.5 bg-gray-700 placeholder-gray-400 text-white  border-teal-500"
                             type="text"
                             placeholder="name"
-                            required
-                            {...register("name", { minLength: 3 })}
+                            {...register("name", {
+                                minLength: 3,
+                                required: true,
+                            })}
                         />
                         {errors.name && (
                             <span className="text-rose-600">
@@ -75,9 +77,13 @@ const Register = () => {
                             className="border   text-sm rounded-md focus:ring-teal-500  block w-full p-2.5 bg-gray-700 placeholder-gray-400 text-white  border-teal-500"
                             type="email"
                             placeholder="email"
-                            required
-                            {...register("email")}
+                            {...register("email", { required: true })}
                         />
+                        {errors.email && (
+                            <span className="text-rose-600">
+                                Minimum 3 letters
+                            </span>
+                        )}
                     </div>
                     <div className="mb-5">
                         <label
@@ -90,8 +96,10 @@ const Register = () => {
                             className="border   text-sm rounded-md focus:ring-teal-500  block w-full p-2.5 bg-gray-700 placeholder-gray-400 text-white  border-teal-500"
                             type="password"
                             placeholder="password"
-                            required
-                            {...register("password", { minLength: 6 })}
+                            {...register("password", {
+                                minLength: 6,
+                                required: true,
+                            })}
                         />
                         {errors.password && (
                             <span className="text-rose-600">

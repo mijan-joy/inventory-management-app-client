@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect } from "react";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -11,11 +12,32 @@ const SocialLogin = () => {
     let from = location.state?.from?.pathname || "/";
     useEffect(() => {
         if (user) {
-            if (user) {
-                navigate(from, { replace: true });
-            }
+            navigate(from, { replace: true });
+            const email = user.user.email;
+            console.log(email);
+            const post = async () => {
+                const { data } = await axios.post(
+                    `http://localhost:5000/login`,
+                    {
+                        email,
+                    }
+                );
+                localStorage.setItem("authToken", data.authToken);
+            };
+            post();
         }
     }, [from, user, navigate]);
+    // useEffect(() => {
+    //     const email = user?.email;
+    //     const post = async () => {
+    //         console.log(email);
+    //         const { data } = await axios.post(`http://localhost:5000/login`, {
+    //             email,
+    //         });
+    //         localStorage.setItem("authToken", data.authToken);
+    //     };
+    //     post();
+    // }, [user]);
 
     if (loading) {
         return (
@@ -25,9 +47,11 @@ const SocialLogin = () => {
         );
     }
 
-    const handleSignInWithGoogle = () => {
-        signInWithGoogle();
+    const handleSignInWithGoogle = async () => {
+        await signInWithGoogle();
+        console.log(user);
     };
+
     return (
         <div className="container mx-auto py-5">
             <div className="flex items-center max-w-[500px] mx-auto py-5">

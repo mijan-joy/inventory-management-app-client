@@ -8,7 +8,11 @@ import axios from "axios";
 import SocialLogin from "./SocialLogin/SocialLogin";
 
 const LogIn = () => {
-    const { register, handleSubmit } = useForm();
+    const {
+        register,
+        formState: { errors },
+        handleSubmit,
+    } = useForm();
     const navigate = useNavigate();
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
@@ -59,9 +63,13 @@ const LogIn = () => {
                             type="email"
                             placeholder="Enter email"
                             autoComplete="off"
-                            required
-                            {...register("email")}
+                            {...register("email", { required: true })}
                         />
+                        {errors.email && (
+                            <span className="text-rose-600">
+                                Please enter your email
+                            </span>
+                        )}
                     </div>
                     <div className="mb-5">
                         <label
@@ -74,9 +82,13 @@ const LogIn = () => {
                             className="border   text-sm rounded-md focus:ring-teal-500  block w-full p-2.5 bg-gray-700 placeholder-gray-400 text-white  border-teal-500"
                             type="password"
                             placeholder="password"
-                            required
-                            {...register("password")}
+                            {...register("password", { required: true })}
                         />
+                        {errors.password && (
+                            <span className="text-rose-600">
+                                Please enter your password
+                            </span>
+                        )}
                     </div>
                     <p className="text-rose-600 py-1">
                         {error?.message.split("auth/")[1].split(")")[0]}

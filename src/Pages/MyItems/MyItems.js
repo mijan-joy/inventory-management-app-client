@@ -59,7 +59,7 @@ const MyItems = () => {
         navigate("/inventory/manage/add");
     };
     return (
-        <div className="container mx-auto">
+        <div className="container mx-auto py-5">
             <div className="py-5 flex items-center">
                 <h2 className="pr-5 text-xl">My Items: {myItems.length}</h2>
                 <div>

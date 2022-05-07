@@ -43,10 +43,12 @@ const AddItem = () => {
                             id="name"
                             className="border   text-sm rounded-md focus:ring-teal-500  block w-full p-2.5 bg-gray-700 placeholder-gray-400 text-white  border-teal-500"
                             placeholder="eg: Pump for M825HI"
-                            required
                             type="text"
                             autoComplete="off"
-                            {...register("name", { minLength: 3 })}
+                            {...register("name", {
+                                minLength: 3,
+                                required: true,
+                            })}
                         />
                         {errors.name && (
                             <span className="text-rose-600">
@@ -65,11 +67,15 @@ const AddItem = () => {
                             id="img"
                             className="border   text-sm rounded-md focus:ring-teal-500  block w-full p-2.5 bg-gray-700 placeholder-gray-400 text-white  border-teal-500"
                             placeholder="eg: https://i.ibb.co/fnkyFJg/btmark.png"
-                            required
                             type="url"
                             autoComplete="off"
-                            {...register("img")}
+                            {...register("img", { required: true })}
                         />
+                        {errors.img && (
+                            <span className="text-rose-600">
+                                URL is required.
+                            </span>
+                        )}
                     </div>
                     <div className="mb-7">
                         <label
@@ -82,10 +88,12 @@ const AddItem = () => {
                             id="description"
                             className="border   text-sm rounded-md focus:ring-teal-500  block w-full p-2.5 bg-gray-700 placeholder-gray-400 text-white  border-teal-500"
                             placeholder="Item description here"
-                            required
                             type="text"
                             autoComplete="off"
-                            {...register("description", { minLength: 10 })}
+                            {...register("description", {
+                                minLength: 10,
+                                required: true,
+                            })}
                         />
                         {errors.description && (
                             <span className="text-rose-600">
@@ -104,10 +112,9 @@ const AddItem = () => {
                             id="price"
                             className="border   text-sm rounded-md focus:ring-teal-500  block w-full p-2.5 bg-gray-700 placeholder-gray-400 text-white  border-teal-500"
                             placeholder="Item price"
-                            required
                             type="number"
                             autoComplete="off"
-                            {...register("price", { min: 0 })}
+                            {...register("price", { min: 0, required: true })}
                         />
                         {errors.price && (
                             <span className="text-rose-600">
@@ -126,10 +133,12 @@ const AddItem = () => {
                             id="quantity"
                             className="border   text-sm rounded-md focus:ring-teal-500  block w-full p-2.5 bg-gray-700 placeholder-gray-400 text-white  border-teal-500"
                             placeholder="Opening quantity here"
-                            required
                             type="number"
                             autoComplete="off"
-                            {...register("quantity", { min: 0 })}
+                            {...register("quantity", {
+                                min: 0,
+                                required: true,
+                            })}
                         />
                         {errors.quantity && (
                             <span className="text-rose-600">
@@ -148,10 +157,12 @@ const AddItem = () => {
                             id="supplier"
                             className="border   text-sm rounded-md focus:ring-teal-500  block w-full p-2.5 bg-gray-700 placeholder-gray-400 text-white  border-teal-500"
                             placeholder="eg: BTMARK"
-                            required
                             type="text"
                             autoComplete="off"
-                            {...register("supplier", { minLength: 3 })}
+                            {...register("supplier", {
+                                minLength: 3,
+                                required: true,
+                            })}
                         />
                         {errors.supplier && (
                             <span className="text-rose-600">
@@ -172,7 +183,6 @@ const AddItem = () => {
                         <input
                             id="sold"
                             className="border   text-sm rounded-md focus:ring-teal-500  block w-full p-2.5 bg-gray-700 placeholder-gray-400 text-white  border-teal-500"
-                            required
                             type="number"
                             value="0"
                             autoComplete="off"
