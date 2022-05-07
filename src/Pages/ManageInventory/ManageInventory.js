@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { confirm } from "react-confirm-box";
+import { PencilAltIcon, TrashIcon } from "@heroicons/react/solid";
 
 const ManageInventory = () => {
     const [items, setItems] = useState([]);
@@ -89,22 +90,24 @@ const ManageInventory = () => {
                                 <td className="hidden md:table-cell px-6 py-4 text-white/50">
                                     {item?.sold}
                                 </td>
-                                <td className="px-6 py-4 text-white/50">
+                                <td className="px-6 py-4 text-white">
                                     <button
-                                        className="text-green-500 underline"
                                         onClick={() => {
                                             handleModifyBtn(item._id);
                                         }}
                                     >
-                                        Modify
+                                        {" "}
+                                        <PencilAltIcon className="inline text-emerald-500 w-5 h-6"></PencilAltIcon>
+                                        Details
                                     </button>
                                     {" / "}
                                     <button
-                                        className="text-rose-600 underline"
                                         onClick={() => {
                                             handleDeleteBtn(item._id);
                                         }}
                                     >
+                                        {" "}
+                                        <TrashIcon className="inline text-red-500 w-5 h-5"></TrashIcon>
                                         Delete
                                     </button>
                                 </td>

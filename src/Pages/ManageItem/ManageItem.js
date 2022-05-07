@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
+import StockOverView from "../Home/StockOverView/StockOverView";
+import InventoryHealth from "../Home/InventoryHealth/InventoryHealth";
+import Loading from "../Shared/Loading/Loading";
 
 const ManageItem = () => {
     const { id } = useParams();
@@ -25,6 +28,7 @@ const ManageItem = () => {
         };
         get();
     }, [id, quantity]);
+
     const handleDeliveryBtn = (id) => {
         if (item.quantity <= 0) {
             toast.error("Item is stocked out!");
@@ -70,6 +74,13 @@ const ManageItem = () => {
     const handleUpdateBtn = (id) => {
         navigate(`/inventory/update/${id}`);
     };
+    if (!item.name) {
+        return (
+            <div className="mx-auto w-48 h-48">
+                <Loading></Loading>
+            </div>
+        );
+    }
     if (error) {
         return (
             <div className="container mx-auto text-center py-10">

@@ -1,14 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const InventoryItem = ({ item }) => {
     const { _id, name, img, description, price, quantity, supplier } = item;
-    const navigate = useNavigate();
-    const handleManageBtn = (id) => {
-        navigate(`/inventory/${id}`);
-    };
-
-    //relative overflow-hidden bg-gradient-to-t from-black via-black to-slate-900 rounded-xl
     return (
         <div className="relative overflow-hidden bg-slate-600/10 rounded-xl">
             <div className="mb-12 p-3">
@@ -32,14 +26,12 @@ const InventoryItem = ({ item }) => {
 
                 <p>Supplier: {supplier}</p>
             </div>
-            <button
-                onClick={() => {
-                    handleManageBtn(_id);
-                }}
-                className=" bg-teal-400 text-black w-full p-2 bottom-0 absolute"
+            <Link
+                to={`/inventory/${_id}`}
+                className=" bg-teal-400 text-black w-full p-3 bottom-0 absolute text-center font-bold"
             >
                 Manage Item
-            </button>
+            </Link>
         </div>
     );
 };

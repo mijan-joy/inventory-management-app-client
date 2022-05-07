@@ -27,7 +27,6 @@ const InventoryItems = () => {
                 "http://localhost:5000/inventorycount"
             );
             setItemsCount(data.count);
-            console.log("count", data);
         };
         get();
     }, []);
@@ -41,11 +40,8 @@ const InventoryItems = () => {
     return (
         <div className="bg-gradient-to-b from-black to-gray-900 mt-14">
             <div className="container mx-auto">
-                <h2 className="text-4xl font-bold pb-5 text-center underline">
-                    Inventory Items{" "}
-                    <span className="text-xl">
-                        ({items?.length} / {itemsCount})
-                    </span>
+                <h2 className="text-3xl font-bold pb-5 text-center">
+                    Inventory Items ({items?.length} / {itemsCount})
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-20 gap-y-10 justify-center py-5">
                     {items.map((item) => (
