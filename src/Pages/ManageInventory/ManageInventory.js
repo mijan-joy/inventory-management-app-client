@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { confirm } from "react-confirm-box";
 
 const ManageInventory = () => {
     const [items, setItems] = useState([]);
@@ -16,8 +17,9 @@ const ManageInventory = () => {
         get();
     }, []);
     const handleDeleteBtn = async (id) => {
-        const proceed = window.confirm("do you want ot delete?");
-        if (proceed) {
+        // const proceed = window.confirm("do you want ot delete?");
+        const result = await confirm("Confirm Delete?");
+        if (result) {
             await axios
                 .delete(`http://localhost:5000/inventory/${id}`)
                 .then((response) => {

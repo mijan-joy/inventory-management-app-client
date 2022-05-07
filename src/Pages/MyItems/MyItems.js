@@ -5,6 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { get } from "react-hook-form";
 import { Navigate, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
+import { confirm } from "react-confirm-box";
 
 const MyItems = () => {
     const [user, loading, error] = useAuthState(auth);
@@ -41,8 +42,8 @@ const MyItems = () => {
         get();
     }, [user]);
     const handleDeleteBtn = async (id) => {
-        const proceed = window.confirm("do you want ot delete?");
-        if (proceed) {
+        const result = confirm("Confirm Delete?");
+        if (result) {
             await axios
                 .delete(`http://localhost:5000/inventory/${id}`)
                 .then((response) => {
