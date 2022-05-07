@@ -17,7 +17,7 @@ const MyItems = () => {
             try {
                 await axios
                     .get(
-                        `http://localhost:5000/inventory/myitems?email=${user.email}`,
+                        `https://ps-wms-server.herokuapp.com/inventory/myitems?email=${user.email}`,
                         {
                             headers: {
                                 authorization: `Bearer: ${localStorage.getItem(
@@ -46,7 +46,7 @@ const MyItems = () => {
         const result = await confirm("Confirm Delete?");
         if (result) {
             await axios
-                .delete(`http://localhost:5000/inventory/${id}`)
+                .delete(`https://ps-wms-server.herokuapp.com/inventory/${id}`)
                 .then((response) => {
                     console.log(response);
                     const rest = myItems.filter((item) => item._id !== id);

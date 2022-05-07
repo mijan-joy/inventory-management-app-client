@@ -20,7 +20,10 @@ const AddItem = () => {
         data.sold = parseInt(data.sold);
         const post = async () => {
             await axios
-                .post("http://localhost:5000/inventory/manage/add", data)
+                .post(
+                    "https://ps-wms-server.herokuapp.com/inventory/manage/add",
+                    data
+                )
                 .then((response) => console.log(response))
                 .then(toast.success("Item add successful"));
         };

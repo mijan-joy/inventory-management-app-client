@@ -13,7 +13,7 @@ const InventoryItems = () => {
         const get = async () => {
             await axios
                 .get(
-                    `http://localhost:5000/inventory?display=${displayItemCount}`
+                    `https://ps-wms-server.herokuapp.com/inventory?display=${displayItemCount}`
                 )
                 .then((response) => {
                     setItems(response.data);
@@ -24,7 +24,7 @@ const InventoryItems = () => {
     useEffect(() => {
         const get = async () => {
             const { data } = await axios.get(
-                "http://localhost:5000/inventorycount"
+                "https://ps-wms-server.herokuapp.com/inventorycount"
             );
             setItemsCount(data.count);
         };

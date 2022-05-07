@@ -24,7 +24,7 @@ const UpdateItem = () => {
         const get = async () => {
             try {
                 await axios
-                    .get(`http://localhost:5000/inventory/${id}`)
+                    .get(`https://ps-wms-server.herokuapp.com/inventory/${id}`)
                     .then((response) => {
                         setItem(response.data);
                     });
@@ -40,7 +40,10 @@ const UpdateItem = () => {
         data.sold = parseInt(data.sold);
         const update = async () => {
             await axios
-                .put(`http://localhost:5000/inventory/${id}`, data)
+                .put(
+                    `https://ps-wms-server.herokuapp.com/inventory/${id}`,
+                    data
+                )
                 .then((response) => {
                     setItem(data);
                     toast.success("Item information updated.");

@@ -10,7 +10,7 @@ const ManageInventory = () => {
     useEffect(() => {
         const get = async () => {
             await axios
-                .get(`http://localhost:5000/inventory`)
+                .get(`https://ps-wms-server.herokuapp.com/inventory`)
                 .then((response) => {
                     setItems(response.data);
                 });
@@ -22,7 +22,7 @@ const ManageInventory = () => {
         const result = await confirm("Confirm Delete?");
         if (result) {
             await axios
-                .delete(`http://localhost:5000/inventory/${id}`)
+                .delete(`https://ps-wms-server.herokuapp.com/inventory/${id}`)
                 .then((response) => {
                     console.log(response);
                     const rest = items.filter((item) => item._id !== id);

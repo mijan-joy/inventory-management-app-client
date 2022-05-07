@@ -3,8 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
-import StockOverView from "../Home/StockOverView/StockOverView";
-import InventoryHealth from "../Home/InventoryHealth/InventoryHealth";
 import Loading from "../Shared/Loading/Loading";
 
 const ManageItem = () => {
@@ -18,7 +16,7 @@ const ManageItem = () => {
         const get = async () => {
             try {
                 await axios
-                    .get(`http://localhost:5000/inventory/${id}`)
+                    .get(`https://ps-wms-server.herokuapp.com/inventory/${id}`)
                     .then((response) => {
                         setItem(response.data);
                     });
@@ -35,10 +33,13 @@ const ManageItem = () => {
         } else {
             const update = async () => {
                 await axios
-                    .put(`http://localhost:5000/inventory/${id}`, {
-                        quantity: item?.quantity - 1,
-                        sold: item?.sold + 1,
-                    })
+                    .put(
+                        `https://ps-wms-server.herokuapp.com/inventory/${id}`,
+                        {
+                            quantity: item?.quantity - 1,
+                            sold: item?.sold + 1,
+                        }
+                    )
                     .then((response) => {
                         setQuantity(item.quantity);
                         toast.success("delivered!");
@@ -57,7 +58,7 @@ const ManageItem = () => {
         console.log(data);
         const update = async () => {
             await axios
-                .put(`http://localhost:5000/inventory/${id}`, {
+                .put(`https://ps-wms-server.herokuapp.com/inventory/${id}`, {
                     quantity: item.quantity + parseInt(data.quantity),
                 })
                 .then((response) => {

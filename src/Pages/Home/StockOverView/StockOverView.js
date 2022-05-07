@@ -18,7 +18,7 @@ const StockOverView = () => {
     useEffect(() => {
         const get = async () => {
             await axios
-                .get(`http://localhost:5000/inventory`)
+                .get(`https://ps-wms-server.herokuapp.com/inventory`)
                 .then((response) => {
                     setItems(response.data);
                 });

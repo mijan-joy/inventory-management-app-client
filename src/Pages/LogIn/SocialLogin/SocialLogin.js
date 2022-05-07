@@ -17,7 +17,7 @@ const SocialLogin = () => {
             console.log(email);
             const post = async () => {
                 const { data } = await axios.post(
-                    `http://localhost:5000/login`,
+                    `https://ps-wms-server.herokuapp.com/login`,
                     {
                         email,
                     }

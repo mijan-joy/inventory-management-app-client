@@ -47,7 +47,7 @@ const InventoryHealth = () => {
     useEffect(() => {
         const get = async () => {
             const { data } = await axios.get(
-                "http://localhost:5000/lowstockcount"
+                "https://ps-wms-server.herokuapp.com/lowstockcount"
             );
             setLowStockCount(data.count);
         };
@@ -56,28 +56,28 @@ const InventoryHealth = () => {
     useEffect(() => {
         const getLowStockCount = async () => {
             const { data } = await axios.get(
-                "http://localhost:5000/lowstockcount"
+                "https://ps-wms-server.herokuapp.com/lowstockcount"
             );
             setLowStockCount(data.count);
         };
         getLowStockCount();
         const getGoodStockCount = async () => {
             const { data } = await axios.get(
-                "http://localhost:5000/goodstockcount"
+                "https://ps-wms-server.herokuapp.com/goodstockcount"
             );
             setGoodStockCount(data.count);
         };
         getGoodStockCount();
         const getGoodSoldCount = async () => {
             const { data } = await axios.get(
-                "http://localhost:5000/goodsoldcount"
+                "https://ps-wms-server.herokuapp.com/goodsoldcount"
             );
             setGoodSoldCount(data.count);
         };
         getGoodSoldCount();
         const getLowSoldCount = async () => {
             const { data } = await axios.get(
-                "http://localhost:5000/lowsoldcount"
+                "https://ps-wms-server.herokuapp.com/lowsoldcount"
             );
             setLowSoldCount(data.count);
         };
