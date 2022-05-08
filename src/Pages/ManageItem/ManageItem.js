@@ -34,7 +34,7 @@ const ManageItem = () => {
             toast.error("Item is stocked out!");
         } else {
             confirmAlert({
-                title: "Confirm to Delete",
+                title: `"Deliver: ${item?.name}"`,
                 message: "Are you sure to do this?",
                 buttons: [
                     {
@@ -96,13 +96,6 @@ const ManageItem = () => {
     const handleUpdateBtn = (id) => {
         navigate(`/inventory/update/${id}`);
     };
-    if (!item) {
-        return (
-            <div className="mx-auto w-48 h-48">
-                <Loading></Loading>
-            </div>
-        );
-    }
     if (error) {
         return (
             <div className="container mx-auto text-center py-10">
@@ -115,6 +108,14 @@ const ManageItem = () => {
             </div>
         );
     }
+    if (!item) {
+        return (
+            <div className="mx-auto w-48 h-48">
+                <Loading></Loading>
+            </div>
+        );
+    }
+
     return (
         <div className="container mx-auto py-5">
             <div className="md:flex items-center justify-center gap-10">
@@ -133,7 +134,7 @@ const ManageItem = () => {
                     <p>description: {item?.description}</p>
                     <p>price: {item?.price}</p>
                     <p className="pb-3">supplier: {item?.supplier}</p>
-                    <div className="flex gap-5">
+                    <div className="flex gap-5 mx-auto">
                         <button
                             onClick={() => {
                                 handleDeliveryBtn(item?._id);

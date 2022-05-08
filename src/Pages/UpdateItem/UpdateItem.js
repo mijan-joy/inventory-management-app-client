@@ -83,7 +83,7 @@ const UpdateItem = () => {
         );
     }
     return (
-        <div>
+        <div className="container mx-auto">
             <h2 className="text-2xl font-bold uppercase pt-10 text-center">
                 Update Item:
             </h2>
