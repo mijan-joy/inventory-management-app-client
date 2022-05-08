@@ -14,12 +14,20 @@ const MyItems = () => {
     const [user] = useAuthState(auth);
     const [myItems, setMyItems] = useState(null);
     const navigate = useNavigate();
+
+    const [myItemsCount, setMyItemsCount] = useState(0);
+    const [pageCount, setPageCount] = useState(0);
+    const [pageSize, setPageSize] = useState(5);
+    const [currentPage, setCurrentPage] = useState(0);
+    const [loading, setLoading] = useState(false);
+
     useEffect(() => {
         const get = async () => {
+            setLoading(true);
             try {
                 await axios
                     .get(
-                        `https://ps-wms-server.herokuapp.com/inventory/myitems?email=${user.email}`,
+                        `https://ps-wms-server.herokuapp.com/inventory/myitems?email=${user.email}&page=${currentPage}&pagesize=${pageSize}`,
                         {
                             headers: {
                                 authorization: `Bearer: ${localStorage.getItem(
@@ -29,6 +37,7 @@ const MyItems = () => {
                         }
                     )
                     .then((response) => {
+                        setLoading(false);
                         setMyItems(response.data);
                     });
             } catch (error) {
@@ -42,7 +51,31 @@ const MyItems = () => {
             }
         };
         get();
-    }, [user, navigate]);
+    }, [user, navigate, currentPage, pageSize]);
+
+    useEffect(() => {
+        const get = async () => {
+            try {
+                await axios
+                    .get(
+                        `https://ps-wms-server.herokuapp.com/inventory/myitemscount?email=${user.email}`,
+                        {
+                            headers: {
+                                authorization: `Bearer: ${localStorage.getItem(
+                                    "authToken"
+                                )}`,
+                            },
+                        }
+                    )
+                    .then((response) => {
+                        setPageCount(Math.ceil(response.data.count / pageSize));
+                        setMyItemsCount(response.data.count);
+                    });
+            } catch (error) {}
+        };
+        get();
+    }, [pageSize, user]);
+
     const handleDeleteBtn = async (id) => {
         confirmAlert({
             title: "Confirm to Delete",
@@ -86,7 +119,9 @@ const MyItems = () => {
     return (
         <div className="container mx-auto py-5">
             <div className="py-5 flex items-center">
-                <h2 className="pr-5 text-xl">My Items: {myItems.length}</h2>
+                <h2 className="pr-5 text-xl">
+                    Showing {myItems.length} of {myItemsCount} items
+                </h2>
                 <div>
                     <button
                         onClick={handleAddBtn}
@@ -100,17 +135,51 @@ const MyItems = () => {
                 <table className="w-full text-sm text-left text-gray-500 animate__animated animate__fadeInUp animate__faster">
                     <thead className="text-xs text-white uppercase bg-gray-800 ">
                         <tr>
-                            <th className="px-6 py-3">Name</th>
-                            <th className="hidden md:table-cell px-6 py-3">
-                                Supplier
+                            <th className="px-6 py-3">
+                                {loading ? (
+                                    <span className="text-rakib-400">
+                                        Loading...
+                                    </span>
+                                ) : (
+                                    "Name"
+                                )}
                             </th>
                             <th className="hidden md:table-cell px-6 py-3">
-                                Current Quantity
+                                {loading ? (
+                                    <span className="text-rakib-400">
+                                        Loading...
+                                    </span>
+                                ) : (
+                                    "Supplier"
+                                )}
                             </th>
                             <th className="hidden md:table-cell px-6 py-3">
-                                Sold Quantity
+                                {loading ? (
+                                    <span className="text-rakib-400">
+                                        Loading...
+                                    </span>
+                                ) : (
+                                    "Stock Qty"
+                                )}
                             </th>
-                            <th className="px-6 py-3">Action</th>
+                            <th className="hidden md:table-cell px-6 py-3">
+                                {loading ? (
+                                    <span className="text-rakib-400">
+                                        Loading...
+                                    </span>
+                                ) : (
+                                    "Sold Qty"
+                                )}
+                            </th>
+                            <th className="px-6 py-3">
+                                {loading ? (
+                                    <span className="text-rakib-400">
+                                        Loading...
+                                    </span>
+                                ) : (
+                                    "Action"
+                                )}
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -156,6 +225,21 @@ const MyItems = () => {
                         ))}
                     </tbody>
                 </table>
+            </div>
+            <div className="flex justify-center py-5">
+                {[...Array(pageCount).keys()].map((number) => (
+                    <button
+                        className={
+                            currentPage === number
+                                ? "bg-rakib-400 text-black py-1 px-2 mr-2"
+                                : "bg-white text-black py-1 px-2 mr-2"
+                        }
+                        onClick={() => setCurrentPage(number)}
+                        key={number}
+                    >
+                        {number + 1}
+                    </button>
+                ))}
             </div>
         </div>
     );
