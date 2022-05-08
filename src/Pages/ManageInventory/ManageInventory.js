@@ -10,18 +10,20 @@ import "animate.css";
 const ManageInventory = () => {
     const [itemsCount, setItemsCount] = useState(0);
     const [pageCount, setPageCount] = useState(0);
-    const [pageSize, setPageSize] = useState(10);
+    const [pageSize, setPageSize] = useState(5);
     const [currentPage, setCurrentPage] = useState(0);
-
     const [items, setItems] = useState(null);
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
     useEffect(() => {
         const get = async () => {
+            setLoading(true);
             await axios
                 .get(
                     `https://ps-wms-server.herokuapp.com/inventory?page=${currentPage}&pagesize=${pageSize}`
                 )
                 .then((response) => {
+                    setLoading(false);
                     setItems(response.data);
                 });
         };
@@ -82,7 +84,7 @@ const ManageInventory = () => {
         <div className="container mx-auto py-5">
             <div className="py-5 flex items-center  ">
                 <h2 className="pr-5 text-xl">
-                    Showing {items.length} items of {itemsCount} items
+                    Showing {items.length} of {itemsCount} items
                 </h2>
                 <div>
                     <button
@@ -94,20 +96,54 @@ const ManageInventory = () => {
                 </div>
             </div>
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table className="w-full text-sm text-left text-gray-500 animate__animated animate__fadeInUp animate__faster">
+                <table className="w-full relative text-sm text-left text-gray-500 animate__animated animate__fadeInUp animate__faster">
                     <thead className="text-xs text-white uppercase bg-gray-800 ">
                         <tr>
-                            <th className="px-6 py-3">Name</th>
-                            <th className="hidden md:table-cell px-6 py-3">
-                                Supplier
+                            <th className="px-6 py-3">
+                                {loading ? (
+                                    <span className="text-rakib-400">
+                                        Loading...
+                                    </span>
+                                ) : (
+                                    "Name"
+                                )}
                             </th>
                             <th className="hidden md:table-cell px-6 py-3">
-                                Current Quantity
+                                {loading ? (
+                                    <span className="text-rakib-400">
+                                        Loading...
+                                    </span>
+                                ) : (
+                                    "Supplier"
+                                )}
                             </th>
                             <th className="hidden md:table-cell px-6 py-3">
-                                Sold Quantity
+                                {loading ? (
+                                    <span className="text-rakib-400">
+                                        Loading...
+                                    </span>
+                                ) : (
+                                    "Stock Qty"
+                                )}
                             </th>
-                            <th className="px-6 py-3">Action</th>
+                            <th className="hidden md:table-cell px-6 py-3">
+                                {loading ? (
+                                    <span className="text-rakib-400">
+                                        Loading...
+                                    </span>
+                                ) : (
+                                    "Sold Qty"
+                                )}
+                            </th>
+                            <th className="px-6 py-3">
+                                {loading ? (
+                                    <span className="text-rakib-400">
+                                        Loading...
+                                    </span>
+                                ) : (
+                                    "Action"
+                                )}
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
