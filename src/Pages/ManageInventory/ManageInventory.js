@@ -94,7 +94,7 @@ const ManageInventory = () => {
                         {items.map((item) => (
                             <tr
                                 key={item._id}
-                                className="border-b border-slate-700  odd:bg-gray-600 even:bg-gray-700 "
+                                className="border-b border-slate-700  odd:bg-gray-600 even:bg-gray-700 hover:bg-gray-500"
                             >
                                 <th className="px-6 py-4 font-medium text-white whitespace-nowrap">
                                     {item?.name}

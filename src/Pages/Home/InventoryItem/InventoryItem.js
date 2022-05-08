@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const InventoryItem = ({ item }) => {
     const { _id, name, img, description, price, quantity, supplier } = item;
     return (
-        <div className="relative overflow-hidden bg-slate-600/10 rounded-xl">
+        <div className="relative overflow-hidden bg-slate-600/10 rounded-xl hover:bg-slate-600/20">
             <div className="mb-12 p-3">
                 <div className="p-3 bg-darkbg/25 rounded-xl mb-3">
                     <img
