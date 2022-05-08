@@ -116,6 +116,12 @@ const Header = () => {
                                     Add Item
                                 </CustomLink>
                             )}
+                            <CustomLink
+                                className="block p-2 mr-2 hover:text-rakib-400"
+                                to="/blogs"
+                            >
+                                Blogs
+                            </CustomLink>
                             {user ? (
                                 <CustomLink
                                     onClick={handleSignOut}

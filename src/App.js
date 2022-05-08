@@ -16,6 +16,7 @@ import RequireAuth from "./Pages/LogIn/RequireAuth/RequireAuth";
 import ResetPassword from "./Pages/LogIn/ResetPassword/ResetPassword";
 import NotFound from "./Pages/NotFound/NotFound";
 import UpdateItem from "./Pages/UpdateItem/UpdateItem";
+import Blogs from "./Pages/Blogs/Blogs/Blogs";
 
 function App() {
     return (
@@ -78,6 +79,7 @@ function App() {
                         path="/resetpassword"
                         element={<ResetPassword></ResetPassword>}
                     ></Route>
+                    <Route path="/blogs" element={<Blogs></Blogs>}></Route>
                     <Route path="*" element={<NotFound></NotFound>}></Route>
                 </Routes>
             </div>
