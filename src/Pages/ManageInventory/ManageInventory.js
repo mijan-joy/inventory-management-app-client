@@ -38,7 +38,7 @@ const ManageInventory = () => {
             setItemsCount(data.count);
         };
         get();
-    }, [pageSize]);
+    }, [pageSize, items]);
 
     const handleDeleteBtn = async (id) => {
         confirmAlert({

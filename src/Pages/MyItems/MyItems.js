@@ -74,7 +74,7 @@ const MyItems = () => {
             } catch (error) {}
         };
         get();
-    }, [pageSize, user]);
+    }, [pageSize, user, myItems]);
 
     const handleDeleteBtn = async (id) => {
         confirmAlert({
