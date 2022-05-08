@@ -8,6 +8,7 @@ import Loading from "../Shared/Loading/Loading";
 import "animate.css";
 
 const ManageInventory = () => {
+    const [itemsCount, setItemsCount] = useState(0);
     const [pageCount, setPageCount] = useState(0);
     const [pageSize, setPageSize] = useState(10);
     const [currentPage, setCurrentPage] = useState(0);
@@ -17,19 +18,22 @@ const ManageInventory = () => {
     useEffect(() => {
         const get = async () => {
             await axios
-                .get(`https://ps-wms-server.herokuapp.com/inventory`)
+                .get(
+                    `https://ps-wms-server.herokuapp.com/inventory?page=${currentPage}&pagesize=${pageSize}`
+                )
                 .then((response) => {
                     setItems(response.data);
                 });
         };
         get();
-    }, []);
+    }, [currentPage, pageSize]);
     useEffect(() => {
         const get = async () => {
             const { data } = await axios.get(
                 `https://ps-wms-server.herokuapp.com/inventorycount`
             );
             setPageCount(Math.ceil(data.count / pageSize));
+            setItemsCount(data.count);
         };
         get();
     }, [pageSize]);
@@ -77,7 +81,9 @@ const ManageInventory = () => {
     return (
         <div className="container mx-auto py-5">
             <div className="py-5 flex items-center  ">
-                <h2 className="pr-5 text-xl">Total Items: {items.length}</h2>
+                <h2 className="pr-5 text-xl">
+                    Showing {items.length} items of {itemsCount} items
+                </h2>
                 <div>
                     <button
                         onClick={handleAddBtn}
