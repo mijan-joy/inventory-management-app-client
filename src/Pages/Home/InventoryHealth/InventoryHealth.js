@@ -93,48 +93,6 @@ const InventoryHealth = () => {
                 </h2>
                 <div className="md:flex items-center justify-around text-center md:text-left">
                     <div>
-                        <p className="py-1 text-[#FFBB28]">
-                            Low Stock Items Count:{" "}
-                            {lowStockCount !== null ? (
-                                lowStockCount
-                            ) : (
-                                <div className="inline-block pb-1 pt-2 w-7 h-7">
-                                    <Loading></Loading>
-                                </div>
-                            )}
-                        </p>
-                        <p className="py-1 text-[#FF8042]">
-                            Good Stock Items Count:{" "}
-                            {goodStockCount !== null ? (
-                                goodStockCount
-                            ) : (
-                                <div className="inline-block pb-1 pt-2 w-7 h-7">
-                                    <Loading></Loading>
-                                </div>
-                            )}
-                        </p>
-                        <p className="py-1 text-[#0088FE]">
-                            Low Sold Items Count:{" "}
-                            {lowSoldCount !== null ? (
-                                lowSoldCount
-                            ) : (
-                                <div className="inline-block pb-1 pt-2 w-7 h-7">
-                                    <Loading></Loading>
-                                </div>
-                            )}
-                        </p>
-                        <p className="py-1 text-[#00C49F]">
-                            Good Sold Items Count:{" "}
-                            {goodSoldCount !== null ? (
-                                goodSoldCount
-                            ) : (
-                                <div className="inline-block pb-1 pt-2 w-7 h-7">
-                                    <Loading></Loading>
-                                </div>
-                            )}
-                        </p>
-                    </div>
-                    <div>
                         <PieChart className="mx-auto" width={200} height={200}>
                             <Pie
                                 data={data}
@@ -154,6 +112,48 @@ const InventoryHealth = () => {
                                 ))}
                             </Pie>
                         </PieChart>
+                    </div>
+                    <div>
+                        <p className="py-1 text-[#FFBB28]">
+                            Low Stock Items Count:{" "}
+                            {lowStockCount !== null ? (
+                                lowStockCount
+                            ) : (
+                                <span className="inline-block pb-1 pt-2 w-7 h-7">
+                                    <Loading></Loading>
+                                </span>
+                            )}
+                        </p>
+                        <p className="py-1 text-[#FF8042]">
+                            Good Stock Items Count:{" "}
+                            {goodStockCount !== null ? (
+                                goodStockCount
+                            ) : (
+                                <span className="inline-block pb-1 pt-2 w-7 h-7">
+                                    <Loading></Loading>
+                                </span>
+                            )}
+                        </p>
+                        <p className="py-1 text-[#0088FE]">
+                            Low Sold Items Count:{" "}
+                            {lowSoldCount !== null ? (
+                                lowSoldCount
+                            ) : (
+                                <span className="inline-block pb-1 pt-2 w-7 h-7">
+                                    <Loading></Loading>
+                                </span>
+                            )}
+                        </p>
+                        <p className="py-1 text-[#00C49F]">
+                            Good Sold Items Count:{" "}
+                            {goodSoldCount !== null ? (
+                                goodSoldCount
+                            ) : (
+                                <span className="inline-block pb-1 pt-2 w-7 h-7">
+                                    <Loading></Loading>
+                                </span>
+                            )}
+                        </p>
                     </div>
                 </div>
             </div>

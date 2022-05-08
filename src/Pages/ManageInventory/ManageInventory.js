@@ -8,6 +8,10 @@ import Loading from "../Shared/Loading/Loading";
 import "animate.css";
 
 const ManageInventory = () => {
+    const [pageCount, setPageCount] = useState(0);
+    const [pageSize, setPageSize] = useState(10);
+    const [currentPage, setCurrentPage] = useState(0);
+
     const [items, setItems] = useState(null);
     const navigate = useNavigate();
     useEffect(() => {
@@ -20,6 +24,16 @@ const ManageInventory = () => {
         };
         get();
     }, []);
+    useEffect(() => {
+        const get = async () => {
+            const { data } = await axios.get(
+                `https://ps-wms-server.herokuapp.com/inventorycount`
+            );
+            setPageCount(Math.ceil(data.count / pageSize));
+        };
+        get();
+    }, [pageSize]);
+
     const handleDeleteBtn = async (id) => {
         confirmAlert({
             title: "Confirm to Delete",
@@ -139,6 +153,21 @@ const ManageInventory = () => {
                         ))}
                     </tbody>
                 </table>
+            </div>
+            <div className="flex justify-center py-5">
+                {[...Array(pageCount).keys()].map((number) => (
+                    <button
+                        className={
+                            currentPage === number
+                                ? "bg-rakib-400 text-black py-1 px-2 mr-2"
+                                : "bg-white text-black py-1 px-2 mr-2"
+                        }
+                        onClick={() => setCurrentPage(number)}
+                        key={number}
+                    >
+                        {number + 1}
+                    </button>
+                ))}
             </div>
         </div>
     );
