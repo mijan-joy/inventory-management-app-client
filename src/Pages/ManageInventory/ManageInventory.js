@@ -21,18 +21,6 @@ const ManageInventory = () => {
         get();
     }, []);
     const handleDeleteBtn = async (id) => {
-        // const proceed = window.confirm("do you want ot delete?");
-
-        // if (proceed) {
-        //     await axios
-        //         .delete(`https://ps-wms-server.herokuapp.com/inventory/${id}`)
-        //         .then((response) => {
-        //             console.log(response);
-        //             const rest = items.filter((item) => item._id !== id);
-        //             setItems(rest);
-        //         });
-        // }
-
         confirmAlert({
             title: "Confirm to Delete",
             message: "Are you sure to do this?",
@@ -45,7 +33,6 @@ const ManageInventory = () => {
                                 `https://ps-wms-server.herokuapp.com/inventory/${id}`
                             )
                             .then((response) => {
-                                console.log(response);
                                 const rest = items.filter(
                                     (item) => item._id !== id
                                 );

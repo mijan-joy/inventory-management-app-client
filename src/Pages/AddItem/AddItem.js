@@ -25,7 +25,6 @@ const AddItem = () => {
                     "https://ps-wms-server.herokuapp.com/inventory/manage/add",
                     data
                 )
-                .then((response) => console.log(response))
                 .then(toast.success("Item add successful"));
         };
         post();

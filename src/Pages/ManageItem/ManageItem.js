@@ -77,7 +77,6 @@ const ManageItem = () => {
         reset,
     } = useForm();
     const onSubmit = (data) => {
-        console.log(data);
         const update = async () => {
             await axios
                 .put(`https://ps-wms-server.herokuapp.com/inventory/${id}`, {

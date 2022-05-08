@@ -12,7 +12,6 @@ const Blogs = () => {
                 "https://ps-wms-server.herokuapp.com/qna"
             );
             setQuestionAndAnswers(data);
-            console.log(data);
         };
         get();
     }, []);

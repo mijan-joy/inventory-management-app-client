@@ -14,7 +14,6 @@ const SocialLogin = () => {
         if (user) {
             navigate(from, { replace: true });
             const email = user.user.email;
-            console.log(email);
             const post = async () => {
                 const { data } = await axios.post(
                     `https://ps-wms-server.herokuapp.com/login`,
@@ -38,7 +37,6 @@ const SocialLogin = () => {
 
     const handleSignInWithGoogle = async () => {
         await signInWithGoogle();
-        console.log(user);
     };
 
     return (

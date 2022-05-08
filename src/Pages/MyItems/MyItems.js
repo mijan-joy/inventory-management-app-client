@@ -32,7 +32,6 @@ const MyItems = () => {
                         setMyItems(response.data);
                     });
             } catch (error) {
-                console.log(error);
                 if (
                     error.response.status === 401 ||
                     error.response.status === 403
@@ -56,8 +55,7 @@ const MyItems = () => {
                             .delete(
                                 `https://ps-wms-server.herokuapp.com/inventory/${id}`
                             )
-                            .then((response) => {
-                                console.log(response);
+                            .then(() => {
                                 const rest = myItems.filter(
                                     (item) => item._id !== id
                                 );

@@ -6,7 +6,7 @@ import auth from "../../../firebase.init";
 import { MenuIcon, XIcon } from "@heroicons/react/solid";
 
 const Header = () => {
-    const [user, loading, error] = useAuthState(auth);
+    const [user] = useAuthState(auth);
     const [open, setOpen] = useState(false);
     const handleSignOut = () => {
         signOut(auth);
@@ -142,54 +142,6 @@ const Header = () => {
                     </div>
                 </div>
             </div>
-            {/* <nav className="p-3">
-                <Link
-                    className="ml-4 py-2 px-4 border border-sky-800"
-                    to="/home"
-                >
-                    Home
-                </Link>
-                {user && (
-                    <Link
-                        className="ml-4 py-2 px-4 border border-sky-800"
-                        to="/inventory/manage"
-                    >
-                        Manage Item
-                    </Link>
-                )}
-                {user && (
-                    <Link
-                        className="ml-4 py-2 px-4 border border-sky-800"
-                        to="/inventory/myitems"
-                    >
-                        My Items
-                    </Link>
-                )}
-                {user && (
-                    <Link
-                        className="ml-4 py-2 px-4 border border-sky-800"
-                        to="/inventory/manage/add"
-                    >
-                        Add Item
-                    </Link>
-                )}
-                {user ? (
-                    <Link
-                        onClick={handleSignOut}
-                        className="ml-4 py-2 px-4 border border-sky-800"
-                        to="/login"
-                    >
-                        Sign Out
-                    </Link>
-                ) : (
-                    <Link
-                        className="ml-4 py-2 px-4 border border-sky-800"
-                        to="/login"
-                    >
-                        Log In
-                    </Link>
-                )}
-            </nav> */}
         </header>
     );
 };
