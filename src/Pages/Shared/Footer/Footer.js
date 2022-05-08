@@ -16,26 +16,35 @@ const Footer = () => {
                     <h2 className="text-2xl pb-3">Useful Links:</h2>
                     <button
                         to="/nowhere"
-                        className="block py-2 hover:underline"
+                        className="block py-2 hover:underline mx-auto md:mx-0"
                     >
                         Docs
                     </button>
-                    <button to="/" className="block py-2 hover:underline">
+                    <button
+                        to="/"
+                        className="block py-2 hover:underline mx-auto md:mx-0"
+                    >
                         Terms & Condition
                     </button>
-                    <button to="/" className="block py-2 hover:underline">
+                    <button
+                        to="/"
+                        className="block py-2 hover:underline mx-auto md:mx-0"
+                    >
                         Usage Policies
                     </button>
                 </div>
                 <div className="mb-7 sm:mb-0">
                     <h2 className="text-2xl pb-3">Company</h2>
-                    <button className="block py-2 hover:underline">
+                    <button className="block py-2 hover:underline mx-auto md:mx-0">
                         About
                     </button>
-                    <button className="block py-2 hover:underline">
+                    <button className="block py-2 hover:underline mx-auto md:mx-0">
                         Career
                     </button>
-                    <button to="/" className="block py-2 hover:underline">
+                    <button
+                        to="/"
+                        className="block py-2 hover:underline mx-auto md:mx-0"
+                    >
                         Contact
                     </button>
                 </div>

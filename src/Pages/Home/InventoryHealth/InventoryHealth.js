@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Cell } from "recharts";
+import Loading from "../../Shared/Loading/Loading";
 
 const InventoryHealth = () => {
-    const [lowStockCount, setLowStockCount] = useState(0);
-    const [lowSoldCount, setLowSoldCount] = useState(0);
-    const [goodStockCount, setGoodStockCount] = useState(0);
-    const [goodSoldCount, setGoodSoldCount] = useState(0);
+    const [lowStockCount, setLowStockCount] = useState(null);
+    const [lowSoldCount, setLowSoldCount] = useState(null);
+    const [goodStockCount, setGoodStockCount] = useState(null);
+    const [goodSoldCount, setGoodSoldCount] = useState(null);
 
     const data = [
         { name: "Low Sold", value: lowSoldCount },
@@ -90,23 +91,51 @@ const InventoryHealth = () => {
                 <h2 className="text-3xl font-bold text-center pb-2 mb-5 border-b">
                     Inventory Health Check
                 </h2>
-                <div className="md:flex items-center justify-around">
+                <div className="md:flex items-center justify-around text-center md:text-left">
                     <div>
                         <p className="py-1 text-[#FFBB28]">
-                            Low Stock Items Count: {lowStockCount}
+                            Low Stock Items Count:{" "}
+                            {lowStockCount !== null ? (
+                                lowStockCount
+                            ) : (
+                                <div className="inline-block pb-1 pt-2 w-7 h-7">
+                                    <Loading></Loading>
+                                </div>
+                            )}
                         </p>
                         <p className="py-1 text-[#FF8042]">
-                            Good Stock Items Count: {goodStockCount}
+                            Good Stock Items Count:{" "}
+                            {goodStockCount !== null ? (
+                                goodStockCount
+                            ) : (
+                                <div className="inline-block pb-1 pt-2 w-7 h-7">
+                                    <Loading></Loading>
+                                </div>
+                            )}
                         </p>
                         <p className="py-1 text-[#0088FE]">
-                            Low Sold Items Count: {lowSoldCount}
+                            Low Sold Items Count:{" "}
+                            {lowSoldCount !== null ? (
+                                lowSoldCount
+                            ) : (
+                                <div className="inline-block pb-1 pt-2 w-7 h-7">
+                                    <Loading></Loading>
+                                </div>
+                            )}
                         </p>
                         <p className="py-1 text-[#00C49F]">
-                            Good Sold Items Count: {goodSoldCount}
+                            Good Sold Items Count:{" "}
+                            {goodSoldCount !== null ? (
+                                goodSoldCount
+                            ) : (
+                                <div className="inline-block pb-1 pt-2 w-7 h-7">
+                                    <Loading></Loading>
+                                </div>
+                            )}
                         </p>
                     </div>
                     <div>
-                        <PieChart width={200} height={200}>
+                        <PieChart className="mx-auto" width={200} height={200}>
                             <Pie
                                 data={data}
                                 cx="50%"

@@ -6,9 +6,9 @@ const InventoryItem = ({ item }) => {
     return (
         <div className="relative overflow-hidden bg-slate-600/10 rounded-xl">
             <div className="mb-12 p-3">
-                <div>
+                <div className="p-3 bg-darkbg/25 rounded-xl mb-3">
                     <img
-                        className="max-w-[250px] w-full mx-auto"
+                        className="max-w-[220px] max-h-[280px] rounded-xl w-full mx-auto"
                         src={img}
                         alt=""
                     />

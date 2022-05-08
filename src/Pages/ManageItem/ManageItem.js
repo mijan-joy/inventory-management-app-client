@@ -4,6 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import Loading from "../Shared/Loading/Loading";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 const ManageItem = () => {
     const { id } = useParams();
@@ -31,21 +33,41 @@ const ManageItem = () => {
         if (item.quantity <= 0) {
             toast.error("Item is stocked out!");
         } else {
-            const update = async () => {
-                await axios
-                    .put(
-                        `https://ps-wms-server.herokuapp.com/inventory/${id}`,
-                        {
-                            quantity: item?.quantity - 1,
-                            sold: item?.sold + 1,
-                        }
-                    )
-                    .then((response) => {
-                        setQuantity(item.quantity);
-                        toast.success("delivered!");
-                    });
-            };
-            update();
+            confirmAlert({
+                title: "Confirm to Delete",
+                message: "Are you sure to do this?",
+                buttons: [
+                    {
+                        label: "Yes",
+                        onClick: async () => {
+                            await axios
+                                .put(
+                                    `https://ps-wms-server.herokuapp.com/inventory/${id}`,
+                                    {
+                                        quantity: item?.quantity - 1,
+                                        sold: item?.sold + 1,
+                                    }
+                                )
+                                .then((response) => {
+                                    setQuantity(item.quantity);
+                                    toast.success("Item Delivered", {
+                                        position: "top-center",
+                                        autoClose: 1000,
+                                        hideProgressBar: false,
+                                        closeOnClick: true,
+                                        pauseOnHover: true,
+                                        draggable: true,
+                                        progress: undefined,
+                                    });
+                                });
+                        },
+                    },
+                    {
+                        label: "No",
+                        onClick: () => {},
+                    },
+                ],
+            });
         }
     };
     const {
@@ -95,11 +117,11 @@ const ManageItem = () => {
         );
     }
     return (
-        <div className="container mx-auto">
-            <div className="md:flex items-center justify-evenly">
-                <div>
+        <div className="container mx-auto py-5">
+            <div className="md:flex items-center justify-center gap-10">
+                <div className="p-3 bg-darkbg/50 rounded-xl mb-3">
                     <img
-                        className="max-w-[300px] mx-auto w-full"
+                        className="max-w-[220px] max-h-[280px] rounded-xl w-full mx-auto"
                         src={item?.img}
                         alt=""
                     />

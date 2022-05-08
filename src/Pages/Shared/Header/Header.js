@@ -72,7 +72,7 @@ const Header = () => {
                         <div>
                             <h2
                                 onClick={() => navigate("/home")}
-                                className="text-center text-xl text-rakib-400 mx-auto z-50 cursor-pointer"
+                                className="text-center text-xl text-rakib-400 hover:text-emerald-300 mx-auto z-50 cursor-pointer"
                             >
                                 Printing Solution
                             </h2>

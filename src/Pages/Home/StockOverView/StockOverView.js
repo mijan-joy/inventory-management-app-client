@@ -34,7 +34,7 @@ const StockOverView = () => {
         );
     }
     return (
-        <div className="container mx-auto py-5 pt-24 bg-gray-900">
+        <div className="container mx-auto py-5 pt-16 bg-gray-900">
             <div>
                 <h2 className="text-3xl font-bold pb-5 text-center">
                     Quantity Vs Sales Overview
